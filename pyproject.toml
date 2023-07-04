@@ -1,0 +1,106 @@
+# Package ######################################################################
+
+[build-system]
+requires = ["setuptools >= 61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rrlcs"
+description = "A robust reinforcement learning benchmark for continuous control tasks."
+readme = "README.md"
+requires-python = ">= 3.8"
+authors = [{ name = "Adil Zouitine", email = "adilzouitinegm@gmail.com" }]
+license = { text = "MIT License" }
+keywords = ["Reinforcement Learning", "Gymnasium", "RL", "AI", "Robotics"]
+classifiers = [
+    "Development Status :: 4 - Beta",  # change to `5 - Production/Stable` when ready
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    'Intended Audience :: Science/Research',
+    'Topic :: Scientific/Engineering :: Artificial Intelligence',
+]
+dependencies = [
+    "mujoco==2.3.3",
+    "numpy>=1.21.0",
+    "gymnasium>=0.26",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+# Update dependencies in `all` if any are added or removed
+testing = [
+	"pytest>=7.0.1",
+	"mujoco_py<2.2,>=2.1",
+]
+mujoco_py = ["mujoco_py<2.2,>=2.1"]
+
+dev = [
+    "ruff",
+    "black",
+    "mypy",
+]
+
+[project.urls]
+Homepage = "https://github.com/SuReLI/RRLCS"
+Repository = "https://github.com/SuReLI/RRLCS"
+Documentation = "https://github.com/SuReLI/RRLCS"
+"Bug Report" = "https://github.com/SuReLI/RRLCS"
+
+[project.entry-points."gymnasium.envs"]
+__root__ = "rrlcs.__init__:register_robotics_envs"
+
+[tool.setuptools]
+include-package-data = true
+
+
+# Linters and Test tools #######################################################
+[tool.mypy]
+files = "rrlcs"
+
+[tool.ruff]
+select = ["E", "F", "I", "UP"]  # https://beta.ruff.rs/docs/rules/
+line-length = 100
+target-version = 'py38'
+ignore = ["E501"]
+
+[tool.ruff.isort]
+required-imports = ["from __future__ import annotations"]
+
+[tool.black]
+safe = true
+
+[tool.isort]
+atomic = true
+profile = "black"
+src_paths = ["rrlcs", "test"]
+
+[tool.pyright]
+include = [
+    "rrlcs/**",
+    "test/**"
+]
+
+
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+]
+
+
+strict = []
+
+typeCheckingMode = "basic"
+pythonVersion = "3.7"
+pythonPlatform = "All"
+typeshedPath = "typeshed"
+enableTypeIgnoreComments = true
+
+# This is required as the CI pre-commit does not download the module (i.e. numpy)
+#   Therefore, we have to ignore missing imports
+
+reportMissingImports = "none"
+reportGeneralTypeIssues = "none"  # -> commented out raises 489 errors
