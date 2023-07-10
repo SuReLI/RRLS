@@ -65,3 +65,10 @@ repos:
         additional_dependencies: ["pyright"]
         args:
           - --project=pyproject.toml
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+      # Ruff version.
+    rev: v0.0.277
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
