@@ -44,16 +44,6 @@ repos:
     rev: 23.1.0
     hooks:
       - id: black
-  - repo: https://github.com/pycqa/pydocstyle
-    rev: 6.3.0
-    hooks:
-      - id: pydocstyle
-        exclude: ^(mo_gymnasium/envs/)|(tests/)|(docs/)|(setup.py)
-        args:
-          - --source
-          - --explain
-          - --convention=google
-        additional_dependencies: ["toml"]
   - repo: local
     hooks:
       - id: pyright
