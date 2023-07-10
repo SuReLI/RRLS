@@ -38,7 +38,7 @@ class ModifiedParams(Protocol):
         ...
 
 
-# Python doesnt support type addition so we need to create a new class
+# Python does not support type addition so we need to create a new class
 # Unlike Rust where we can just add to the function signature ModifiedPhysics + gym.Env
 class ModifiedParamsEnv(ModifiedParams, gym.Env):
     """
