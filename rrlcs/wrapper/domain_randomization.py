@@ -8,7 +8,7 @@ import numpy as np
 from rrlcs._interface import ModifiedParamsEnv
 
 
-class DomainRandomizationWrapper(gym.Wrapper):
+class DomainRandomization(gym.Wrapper):
     """
     The `DomainRandomizationBenchmarkWrapper` is a Gym Wrapper that allows for
     domain randomization by changing the parameters of the environment between episodes.
@@ -56,7 +56,7 @@ class DomainRandomizationWrapper(gym.Wrapper):
         """
         self.params = self.randomize_fn(self.params_bound)
         self.env.set_params(**self.params)
-        self.env.change_physics()
+        self.env.change_params()
         return self.env.reset()
 
     def step(self, action):
