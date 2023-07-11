@@ -1,15 +1,23 @@
 from __future__ import annotations
 
-from gymnasium.envs.mujoco.inverted_pendulum import InvertedPendulumEnv
+from enum import Enum
+
+from gymnasium.envs.mujoco.inverted_pendulum_v4 import InvertedPendulumEnv
+
+
+class InvertedPendulumParamsBound(Enum):
+    ONE_DIM = {
+        "polemass": [1, 31],
+    }
+    TWO_DIM = {
+        "polemass": [1, 31],
+        "cartmass": [1, 11],
+    }
 
 
 class RobustInvertedPendulum(InvertedPendulumEnv):
     ONE_DIM_PARAMS_BOUND_31 = {
         "polemass": [1, 31],
-    }
-    ONE_DIM_PARAMS_BOUND_9 = {
-        "polemass": [1, 9],  # WATCH OUT in M2TD3 this params is weird
-        # https://github.com/akimotolab/M2TD3/blob/main/configs/environment/InvertedPendulumv2-1_9.yaml
     }
 
     TWO_DIM_PARAMS_BOUND_31_11 = {
@@ -22,7 +30,7 @@ class RobustInvertedPendulum(InvertedPendulumEnv):
         self.cartmass = cartmass
         super().__init__()
 
-        self.change_physics()
+        self.change_params()
 
     def set_params(self, polemass: float | None = None, cartmass: float | None = None):
         self.polemass = polemass
@@ -44,7 +52,7 @@ class RobustInvertedPendulum(InvertedPendulumEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_physics(self):
+    def change_params(self):
         if self.polemass is not None:
             self.model.body_mass[2] = self.polemass
         if self.cartmass is not None:
