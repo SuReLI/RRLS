@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Protocol
+from typing import Any, Protocol
 
 import gymnasium as gym
 
@@ -71,3 +71,15 @@ class ModifiedParamsEnv(ModifiedParams, gym.Env):
             dict: A dictionary with the current parameters and their values.
         """
         ...
+
+
+def check_protocol_modified_params_env(obj: Any) -> bool:
+    """
+    Checks if an object complies with the `ModifiedParamsEnv` protocol.
+    """
+    required_methods = ["change_params", "set_params", "get_params"]
+    protocal_compliant = all(
+        callable(getattr(obj, method, None)) for method in required_methods
+    )
+    is_gym_env = isinstance(obj, gym.Env)
+    return protocal_compliant and is_gym_env
