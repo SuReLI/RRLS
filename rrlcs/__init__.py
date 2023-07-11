@@ -65,7 +65,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHalfCheetah,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HalfCheetahParamsBound.THREE_DIM,
+        "params_bound": envs.HalfCheetahParamsBound.THREE_DIM.value,
     },
 )
 register(
@@ -75,7 +75,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHalfCheetah,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HalfCheetahParamsBound.TWO_DIM,
+        "params_bound": envs.HalfCheetahParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -85,7 +85,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHalfCheetah,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HalfCheetahParamsBound.ONE_DIM,
+        "params_bound": envs.HalfCheetahParamsBound.ONE_DIM.value,
     },
 )
 # Ant
@@ -96,7 +96,7 @@ register(
     kwargs={
         "cls_env": envs.RobustAnt,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.AntParamsBound.THREE_DIM,
+        "params_bound": envs.AntParamsBound.THREE_DIM.value,
     },
 )
 register(
@@ -106,7 +106,7 @@ register(
     kwargs={
         "cls_env": envs.RobustAnt,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.AntParamsBound.TWO_DIM,
+        "params_bound": envs.AntParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -116,7 +116,7 @@ register(
     kwargs={
         "cls_env": envs.RobustAnt,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.AntParamsBound.ONE_DIM,
+        "params_bound": envs.AntParamsBound.ONE_DIM.value,
     },
 )
 # Hopper
@@ -127,7 +127,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHopper,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HopperParamsBound.THREE_DIM,
+        "params_bound": envs.HopperParamsBound.THREE_DIM.value,
     },
 )
 register(
@@ -137,7 +137,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHopper,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HopperParamsBound.TWO_DIM,
+        "params_bound": envs.HopperParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -147,7 +147,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHopper,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HopperParamsBound.ONE_DIM,
+        "params_bound": envs.HopperParamsBound.ONE_DIM.value,
     },
 )
 
@@ -159,7 +159,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHumanoidStandUp,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HumanoidStandupParamsBound.THREE_DIM,
+        "params_bound": envs.HumanoidStandupParamsBound.THREE_DIM.value,
     },
 )
 register(
@@ -169,7 +169,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHumanoidStandUp,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HumanoidStandupParamsBound.TWO_DIM,
+        "params_bound": envs.HumanoidStandupParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -179,7 +179,7 @@ register(
     kwargs={
         "cls_env": envs.RobustHumanoidStandUp,
         "wrapper": wrapper.DynamicAdversarial,
-        "params_bound": envs.HumanoidStandupParamsBound.ONE_DIM,
+        "params_bound": envs.HumanoidStandupParamsBound.ONE_DIM.value,
     },
 )
 
@@ -192,7 +192,7 @@ register(
     kwargs={
         "wrapper": wrapper.DynamicAdversarial,
         "cls_env": envs.RobustInvertedPendulum,
-        "params_bound": envs.InvertedPendulumParamsBound.TWO_DIM,
+        "params_bound": envs.InvertedPendulumParamsBound.TWO_DIM.value,
     },
 )
 
@@ -203,7 +203,7 @@ register(
     kwargs={
         "wrapper": wrapper.DynamicAdversarial,
         "cls_env": envs.RobustInvertedPendulum,
-        "params_bound": envs.InvertedPendulumParamsBound.ONE_DIM,
+        "params_bound": envs.InvertedPendulumParamsBound.ONE_DIM.value,
     },
 )
 
@@ -217,7 +217,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHalfCheetah,
-        "params_bound": envs.HalfCheetahParamsBound.THREE_DIM,
+        "params_bound": envs.HalfCheetahParamsBound.THREE_DIM.value,
     },
 )
 register(
@@ -227,7 +227,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHalfCheetah,
-        "params_bound": envs.HalfCheetahParamsBound.TWO_DIM,
+        "params_bound": envs.HalfCheetahParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -237,7 +237,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHalfCheetah,
-        "params_bound": envs.HalfCheetahParamsBound.ONE_DIM,
+        "params_bound": envs.HalfCheetahParamsBound.ONE_DIM.value,
     },
 )
 
@@ -249,7 +249,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustAnt,
-        "params_bound": envs.AntParamsBound.THREE_DIM,
+        "params_bound": envs.AntParamsBound.THREE_DIM.value,
     },
 )
 register(
@@ -259,7 +259,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustAnt,
-        "params_bound": envs.AntParamsBound.TWO_DIM,
+        "params_bound": envs.AntParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -269,7 +269,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustAnt,
-        "params_bound": envs.AntParamsBound.ONE_DIM,
+        "params_bound": envs.AntParamsBound.ONE_DIM.value,
     },
 )
 
@@ -281,7 +281,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHopper,
-        "params_bound": envs.HopperParamsBound.THREE_DIM,
+        "params_bound": envs.HopperParamsBound.THREE_DIM.value,
     },
 )
 
@@ -292,7 +292,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHopper,
-        "params_bound": envs.HopperParamsBound.TWO_DIM,
+        "params_bound": envs.HopperParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -302,7 +302,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHopper,
-        "params_bound": envs.HopperParamsBound.ONE_DIM,
+        "params_bound": envs.HopperParamsBound.ONE_DIM.value,
     },
 )
 # HumanoidStandUp
@@ -313,7 +313,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHumanoidStandUp,
-        "params_bound": envs.HumanoidStandupParamsBound.THREE_DIM,
+        "params_bound": envs.HumanoidStandupParamsBound.THREE_DIM.value,
     },
 )
 register(
@@ -323,7 +323,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHumanoidStandUp,
-        "params_bound": envs.HumanoidStandupParamsBound.TWO_DIM,
+        "params_bound": envs.HumanoidStandupParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -333,7 +333,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustHumanoidStandUp,
-        "params_bound": envs.HumanoidStandupParamsBound.ONE_DIM,
+        "params_bound": envs.HumanoidStandupParamsBound.ONE_DIM.value,
     },
 )
 # InvertedPendulum
@@ -344,7 +344,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustInvertedPendulum,
-        "params_bound": envs.InvertedPendulumParamsBound.TWO_DIM,
+        "params_bound": envs.InvertedPendulumParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -354,7 +354,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustInvertedPendulum,
-        "params_bound": envs.InvertedPendulumParamsBound.ONE_DIM,
+        "params_bound": envs.InvertedPendulumParamsBound.ONE_DIM.value,
     },
 )
 # Walker2d
@@ -365,7 +365,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustWalker2d,
-        "params_bound": envs.Walker2dParamsBound.THREE_DIM,
+        "params_bound": envs.Walker2dParamsBound.THREE_DIM.value,
     },
 )
 register(
@@ -375,7 +375,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustWalker2d,
-        "params_bound": envs.Walker2dParamsBound.TWO_DIM,
+        "params_bound": envs.Walker2dParamsBound.TWO_DIM.value,
     },
 )
 register(
@@ -385,7 +385,7 @@ register(
     kwargs={
         "wrapper": wrapper.DomainRandomization,
         "cls_env": envs.RobustWalker2d,
-        "params_bound": envs.Walker2dParamsBound.ONE_DIM,
+        "params_bound": envs.Walker2dParamsBound.ONE_DIM.value,
     },
 )
 __all__ = [
