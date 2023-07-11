@@ -1,6 +1,23 @@
 from __future__ import annotations
 
-from gymnasium.envs.mujoco.hopper import HopperEnv
+from enum import Enum
+
+from gymnasium.envs.mujoco.hopper_v4 import HopperEnv
+
+
+class HopperParamsBound(Enum):
+    ONE_DIM = {
+        "worldfriction": [0.1, 3.0],
+    }
+    TWO_DIM = {
+        "worldfriction": [0.1, 3.0],
+        "torsomass": [0.1, 3.0],
+    }
+    THREE_DIM = {
+        "worldfriction": [0.1, 3.0],
+        "torsomass": [0.1, 3.0],
+        "thighmass": [0.1, 4.0],
+    }
 
 
 class RobustHopper(HopperEnv):
@@ -31,7 +48,7 @@ class RobustHopper(HopperEnv):
         self.thighmass = thighmass
         super().__init__()
 
-        self.change_physics()
+        self.change_params()
 
     def set_params(
         self,
@@ -60,7 +77,7 @@ class RobustHopper(HopperEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_physics(self):
+    def change_params(self):
         if self.worldfriction is not None:
             self.model.geom_friction[0, 0] = self.worldfriction
 
