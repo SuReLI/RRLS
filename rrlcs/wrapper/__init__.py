@@ -1,5 +1,6 @@
 from __future__ import annotations
 
-from .domain_randomization import DomainRandomizationWrapper
+from .adversarial import DynamicAdversarial
+from .domain_randomization import DomainRandomization
 
-__all__ = ["DomainRandomizationWrapper"]
+__all__ = ["DynamicAdversarial", "DomainRandomization"]
