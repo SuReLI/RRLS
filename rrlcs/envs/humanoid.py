@@ -1,6 +1,23 @@
 from __future__ import annotations
 
-from gymnasium.envs.mujoco.humanoidstandup import HumanoidStandupEnv
+from enum import Enum
+
+from gymnasium.envs.mujoco.humanoidstandup_v4 import HumanoidStandupEnv
+
+
+class HumanoidStandupParamsBound(Enum):
+    ONE_DIM = {
+        "torsomass": [0.1, 16.0],
+    }
+    TWO_DIM = {
+        "torsomass": [0.1, 16.0],
+        "rightfootmass": [0.1, 8.0],
+    }
+    THREE_DIM = {
+        "torsomass": [0.1, 16.0],
+        "leftthighmass": [0.1, 5.0],
+        "rightfootmass": [0.1, 8.0],
+    }
 
 
 class RobustHumanoidStandUp(HumanoidStandupEnv):
@@ -28,7 +45,7 @@ class RobustHumanoidStandUp(HumanoidStandupEnv):
         self.rightfootmass = rightfootmass
         super().__init__()
 
-        self.change_physics()
+        self.change_params()
 
     def set_params(
         self,
@@ -57,7 +74,7 @@ class RobustHumanoidStandUp(HumanoidStandupEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_physics(self):
+    def change_params(self):
         if self.torsomass is not None:
             self.model.body_mass[1] = self.torsomass
 
