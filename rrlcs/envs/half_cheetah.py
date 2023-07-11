@@ -1,6 +1,23 @@
 from __future__ import annotations
 
-from gymnasium.envs.mujoco.half_cheetah import HalfCheetahEnv
+from enum import Enum
+
+from gymnasium.envs.mujoco.half_cheetah_v4 import HalfCheetahEnv
+
+
+class HalfCheetahParamsBound(Enum):
+    ONE_DIM = {
+        "worldfriction": [0.1, 3.0],
+    }
+    TWO_DIM = {
+        "worldfriction": [0.1, 4.0],
+        "torsomass": [0.1, 7.0],
+    }
+    THREE_DIM = {
+        "worldfriction": [0.1, 4.0],
+        "torsomass": [0.1, 7.0],
+        "backthighmass": [0.1, 3.0],
+    }
 
 
 class RobustHalfCheetah(HalfCheetahEnv):
