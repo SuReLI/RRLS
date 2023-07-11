@@ -1,6 +1,23 @@
 from __future__ import annotations
 
-from gymnasium.envs.mujoco.walker2d import Walker2dEnv
+from enum import Enum
+
+from gymnasium.envs.mujoco.walker2d_v4 import Walker2dEnv
+
+
+class Walker2dParamsBound(Enum):
+    ONE_DIM = {
+        "worldfriction": [0.1, 4.0],
+    }
+    TWO_DIM = {
+        "worldfriction": [0.1, 4.0],
+        "torsomass": [0.1, 5.0],
+    }
+    THREE_DIM = {
+        "worldfriction": [0.1, 4.0],
+        "torsomass": [0.1, 5.0],
+        "thighmass": [0.1, 6.0],
+    }
 
 
 class RobustWalker2d(Walker2dEnv):
@@ -28,7 +45,7 @@ class RobustWalker2d(Walker2dEnv):
         self.thighmass = thighmass
         super().__init__()
 
-        self.change_physics()
+        self.change_params()
 
     def set_params(
         self,
@@ -57,7 +74,7 @@ class RobustWalker2d(Walker2dEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_physics(self):
+    def change_params(self):
         if self.worldfriction is not None:
             self.model.geom_friction[0, 0] = self.worldfriction
 
