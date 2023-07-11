@@ -1,6 +1,23 @@
 from __future__ import annotations
 
-from gymnasium.envs.mujoco.ant import AntEnv
+from enum import Enum
+
+from gymnasium.envs.mujoco.ant_v4 import AntEnv
+
+
+class AntParamsBound(Enum):
+    ONE_DIM = {
+        "torsomass": [0.1, 3.0],
+    }
+    TWO_DIM = {
+        "torsomass": [0.1, 3.0],
+        "frontleftlegmass": [0.01, 3.0],
+    }
+    THREE_DIM = {
+        "torsomass": [0.1, 3.0],
+        "frontleftlegmass": [0.01, 3.0],
+        "frontrightlegmass": [0.01, 3.0],
+    }
 
 
 class RobustAnt(AntEnv):
