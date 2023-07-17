@@ -25,13 +25,13 @@ jobs:
         sudo apt-get update
         sudo apt-get install libglu1-mesa-dev libgl1-mesa-dev libosmesa6-dev xvfb patchelf ffmpeg cmake swig
         wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
-        mkdir $HOME/.mujoco
+        mkdir /home/.mujoco
         tar -xzf mujoco210-linux-x86_64.tar.gz -C $HOME/.mujoco
         export
         pip install gymnasium
         pip install -e .[all]
     - name: Full Python tests
       env:
-        LD_LIBRARY_PATH: $LD_LIBRARY_PATH:/$HOME/.mujoco/mujoco210/bin
+        LD_LIBRARY_PATH: $LD_LIBRARY_PATH:/home/runner/.mujoco/mujoco210/bin
       run: |
         pytest test
