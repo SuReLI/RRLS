@@ -32,6 +32,6 @@ jobs:
         pip install -e .[all]
     - name: Full Python tests
       env:
-        LD_LIBRARY_PATH: $LD_LIBRARY_PATH:/$HOME/runner/.mujoco/mujoco210/bin
+        LD_LIBRARY_PATH: $LD_LIBRARY_PATH:/$HOME/.mujoco/mujoco210/bin
       run: |
         pytest test
