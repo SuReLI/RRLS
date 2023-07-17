@@ -28,5 +28,4 @@ jobs:
         pip install -e .[all]
     - name: Full Python tests
       run: |
-        pytest test/test_envs.py
-        pytest test/test_wrappers.py
+        pytest test
