@@ -27,8 +27,11 @@ jobs:
         wget https://mujoco.org/download/mujoco210-linux-x86_64.tar.gz
         mkdir $HOME/.mujoco
         tar -xzf mujoco210-linux-x86_64.tar.gz -C $HOME/.mujoco
+        export
         pip install gymnasium
         pip install -e .[all]
     - name: Full Python tests
+      env:
+        LD_LIBRARY_PATH: $LD_LIBRARY_PATH:/$HOME/runner/.mujoco/mujoco210/bin
       run: |
         pytest test
