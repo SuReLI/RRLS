@@ -69,7 +69,6 @@ class DynamicAdversarial(gym.Wrapper):
         action_nature: dict[str, float] = {  # type: ignore
             k: v for k, v in zip(self.params_bound.keys(), action_nature)
         }
-
         unnormalized_action_nature = self._unnormalize_action_nature(action_nature)
 
         self.env.set_params(**unnormalized_action_nature)
