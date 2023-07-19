@@ -21,30 +21,28 @@ class Walker2dParamsBound(Enum):
 
 
 class RobustWalker2d(Walker2dEnv):
-    ONE_DIM_PARAMS_BOUND_4 = {
-        "worldfriction": [0.1, 4.0],
-    }
-    TWO_DIM_PARAMS_BOUND_4_5 = {
-        "worldfriction": [0.1, 4.0],
-        "torsomass": [0.1, 5.0],
-    }
-    THREE_DIM_PARAMS_BOUND_4_5_6 = {
-        "worldfriction": [0.1, 4.0],
-        "torsomass": [0.1, 5.0],
-        "thighmass": [0.1, 6.0],
-    }
-
     def __init__(
         self,
         worldfriction: float | None = None,
         torsomass: float | None = None,
         thighmass: float | None = None,
+        legmass: float | None = None,
+        footmass: float | None = None,
+        leftthighmass: float | None = None,
+        leftlegmass: float | None = None,
+        leftfootmass: float | None = None,
     ):
-        self.worldfriction = worldfriction
-        self.torsomass = torsomass
-        self.thighmass = thighmass
         super().__init__()
-
+        self.set_params(
+            worldfriction=worldfriction,
+            torsomass=torsomass,
+            thighmass=thighmass,
+            legmass=legmass,
+            footmass=footmass,
+            leftthighmass=leftthighmass,
+            leftlegmass=leftlegmass,
+            leftfootmass=leftfootmass,
+        )
         self.change_params()
 
     def set_params(
@@ -52,16 +50,31 @@ class RobustWalker2d(Walker2dEnv):
         worldfriction: float | None = None,
         torsomass: float | None = None,
         thighmass: float | None = None,
+        legmass: float | None = None,
+        footmass: float | None = None,
+        leftthighmass: float | None = None,
+        leftlegmass: float | None = None,
+        leftfootmass: float | None = None,
     ):
         self.worldfriction = worldfriction
         self.torsomass = torsomass
         self.thighmass = thighmass
+        self.legmass = legmass
+        self.footmass = footmass
+        self.leftthighmass = leftthighmass
+        self.leftlegmass = leftlegmass
+        self.leftfootmass = leftfootmass
 
     def get_params(self):
         return {
             "worldfriction": self.worldfriction,
             "torsomass": self.torsomass,
             "thighmass": self.thighmass,
+            "legmass": self.legmass,
+            "footmass": self.footmass,
+            "leftthighmass": self.leftthighmass,
+            "leftlegmass": self.leftlegmass,
+            "leftfootmass": self.leftfootmass,
         }
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
@@ -83,3 +96,18 @@ class RobustWalker2d(Walker2dEnv):
 
         if self.thighmass is not None:
             self.model.body_mass[2] = self.thighmass
+
+        if self.legmass is not None:
+            self.model.body_mass[3] = self.legmass
+
+        if self.footmass is not None:
+            self.model.body_mass[4] = self.footmass
+
+        if self.leftthighmass is not None:
+            self.model.body_mass[5] = self.leftthighmass
+
+        if self.leftlegmass is not None:
+            self.model.body_mass[6] = self.leftlegmass
+
+        if self.leftfootmass is not None:
+            self.model.body_mass[7] = self.leftfootmass
