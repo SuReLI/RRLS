@@ -21,33 +21,23 @@ class HopperParamsBound(Enum):
 
 
 class RobustHopper(HopperEnv):
-    ONE_DIM_PARAMS_BOUND_2 = {
-        "worldfriction": [0.1, 2.0],
-    }
-    ONE_DIM_PARAMS_BOUND_3 = {
-        "worldfriction": [0.1, 3.0],
-    }
-    TWO_DIM_PARAMS_BOUND_3_3 = {
-        "worldfriction": [0.1, 3.0],
-        "torsomass": [0.1, 3.0],
-    }
-    THREE_DIM_PARAMS_BOUND_3_3_4 = {
-        "worldfriction": [0.1, 3.0],
-        "torsomass": [0.1, 3.0],
-        "thighmass": [0.1, 4.0],
-    }
-
     def __init__(
         self,
         worldfriction: float | None = None,
         torsomass: float | None = None,
         thighmass: float | None = None,
+        legmass: float | None = None,
+        footmass: float | None = None,
     ):
-        self.worldfriction = worldfriction
-        self.torsomass = torsomass
-        self.thighmass = thighmass
         super().__init__()
 
+        self.set_params(
+            worldfriction=worldfriction,
+            torsomass=torsomass,
+            thighmass=thighmass,
+            legmass=legmass,
+            footmass=footmass,
+        )
         self.change_params()
 
     def set_params(
@@ -55,10 +45,14 @@ class RobustHopper(HopperEnv):
         worldfriction: float | None = None,
         torsomass: float | None = None,
         thighmass: float | None = None,
+        legmass: float | None = None,
+        footmass: float | None = None,
     ):
         self.worldfriction = worldfriction
         self.torsomass = torsomass
         self.thighmass = thighmass
+        self.legmass = legmass
+        self.footmass = footmass
 
     def get_params(self):
         return {
@@ -86,3 +80,9 @@ class RobustHopper(HopperEnv):
 
         if self.thighmass is not None:
             self.model.body_mass[2] = self.thighmass
+
+        if self.legmass is not None:
+            self.model.body_mass[3] = self.legmass
+
+        if self.footmass is not None:
+            self.model.body_mass[4] = self.footmass
