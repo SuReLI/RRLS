@@ -25,6 +25,7 @@ classifiers = [
 ]
 dependencies = [
     "mujoco==2.3.3",
+    "cython<3",
     "mujoco-py<2.2,>=2.1",
     "numpy>=1.21.0",
     "gymnasium>=0.26",
