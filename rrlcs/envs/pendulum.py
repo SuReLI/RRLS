@@ -16,15 +16,6 @@ class InvertedPendulumParamsBound(Enum):
 
 
 class RobustInvertedPendulum(InvertedPendulumEnv):
-    ONE_DIM_PARAMS_BOUND_31 = {
-        "polemass": [1, 31],
-    }
-
-    TWO_DIM_PARAMS_BOUND_31_11 = {
-        "polemass": [1, 31],
-        "cartmass": [1, 11],
-    }
-
     def __init__(self, polemass: float | None = None, cartmass: float | None = None):
         self.polemass = polemass
         self.cartmass = cartmass
