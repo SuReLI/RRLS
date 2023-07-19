@@ -55,8 +55,8 @@ class DomainRandomization(gym.Wrapper):
             obj: The initial observation from the environment.
         """
         self.params = self.randomize_fn(self.params_bound)
-        self.env.set_params(**self.params)
-        self.env.change_params()
+        self.env.unwrapped.set_params(**self.params)
+        self.env.unwrapped.change_params()
         return self.env.reset()
 
     def step(self, action):

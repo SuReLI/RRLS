@@ -71,8 +71,8 @@ class DynamicAdversarial(gym.Wrapper):
         }
         unnormalized_action_nature = self._unnormalize_action_nature(action_nature)
 
-        self.env.set_params(**unnormalized_action_nature)
-        self.env.change_params()
+        self.unwrapped.set_params(**unnormalized_action_nature)
+        self.unwrapped.change_params()
 
         # Apply agent action to the environment
         obs, reward, terminated, truncated, info = self.env.step(action_agent)
@@ -92,11 +92,11 @@ class DynamicAdversarial(gym.Wrapper):
         Returns:
             Tuple: A tuple containing the initial observation and additional info.
         """
-        self.env.set_params(**self.defaut_params)  # type: ignore
-        self.env.change_params()  # type: ignore
+        self.unwrapped.set_params(**self.defaut_params)  # type: ignore
+        self.unwrapped.change_params()  # type: ignore
 
         obs, info = super().reset(seed=seed, options=options)
-        info.update(self.get_params())
+        info.update(self.unwrapped.get_params())
         return obs, info
 
     def _unnormalize_action_nature(self, action_nature: dict[str, float]):
