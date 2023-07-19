@@ -23,7 +23,7 @@ def test_humanoid_change_params(humanoid_env):
     assert env.model.body_mass[7] == desired_leftthighmass
     assert env.model.body_mass[6] == desired_rightfootmass
 
-    assert env.get_params() == {
+    assert {k: v for k, v in env.get_params().items() if v is not None} == {
         "torsomass": desired_torsomass,
         "leftthighmass": desired_leftthighmass,
         "rightfootmass": desired_rightfootmass,

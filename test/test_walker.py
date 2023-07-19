@@ -27,7 +27,7 @@ def test_walker_change_params(walker_env):
     assert env.model.body_mass[1] == desired_torsomass
     assert env.model.body_mass[2] == desired_thighmass
 
-    assert env.get_params() == {
+    assert {k: v for k, v in env.get_params().items() if v is not None} == {
         "worldfriction": desired_worldfriction,
         "torsomass": desired_torsomass,
         "thighmass": desired_thighmass,

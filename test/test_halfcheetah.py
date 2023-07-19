@@ -26,7 +26,7 @@ def test_halfcheetah_change_params(halfcheetah_env):
     assert env.model.body_mass[1] == desired_torsomass
     assert env.model.body_mass[2] == desired_backthighmass
 
-    assert env.get_params() == {
+    assert {k: v for k, v in env.get_params().items() if v is not None} == {
         "worldfriction": desired_worldfriction,
         "torsomass": desired_torsomass,
         "backthighmass": desired_backthighmass,
