@@ -20,4 +20,5 @@ setup(
     name="rrls",
     version=get_version(),
     long_description=open("README.md").read(),
+    packages=["rrls"],
 )
