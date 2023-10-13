@@ -8,8 +8,8 @@ CWD = pathlib.Path(__file__).absolute().parent
 
 
 def get_version():
-    """Gets the rrlcs version."""
-    path = CWD / "rrlcs" / "__version__.py"
+    """Gets the rrls version."""
+    path = CWD / "rrls" / "__version__.py"
     about = {}  # type: ignore
     with open(path) as f:
         exec(f.read(), about)
@@ -17,7 +17,7 @@ def get_version():
 
 
 setup(
-    name="rrlcs",
+    name="rrls",
     version=get_version(),
     long_description=open("README.md").read(),
 )

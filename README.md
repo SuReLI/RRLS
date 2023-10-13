@@ -1,5 +1,7 @@
-# RRLCS
-Robust Reinforcement Learning Control Suite
+# rrls
+<img src="./media/rrls_logo.png" width="200" height="200" />
+
+Robust Reinforcement Learning Suite
 
 ## 🙏 Acknowledgments
 

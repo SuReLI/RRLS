@@ -5,7 +5,7 @@ requires = ["setuptools >= 61.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "rrlcs"
+name = "rrls"
 description = "A robust reinforcement learning benchmark for continuous control tasks."
 readme = "README.md"
 requires-python = ">= 3.8"
@@ -53,7 +53,7 @@ Documentation = "https://github.com/SuReLI/RRLCS"
 "Bug Report" = "https://github.com/SuReLI/RRLCS"
 
 [project.entry-points."gymnasium.envs"]
-__root__ = "rrlcs.__init__:register_robotics_envs"
+__root__ = "rrls.__init__:register_robotics_envs"
 
 [tool.setuptools]
 include-package-data = true
@@ -61,7 +61,7 @@ include-package-data = true
 
 # Linters and Test tools #######################################################
 [tool.mypy]
-files = "rrlcs"
+files = "rrls"
 
 [tool.ruff]
 select = ["E", "F", "I", "UP"]  # https://beta.ruff.rs/docs/rules/
@@ -78,11 +78,11 @@ safe = true
 [tool.isort]
 atomic = true
 profile = "black"
-src_paths = ["rrlcs", "test"]
+src_paths = ["rrls", "test"]
 
 [tool.pyright]
 include = [
-    "rrlcs/**",
+    "rrls/**",
     "test/**"
 ]
 
