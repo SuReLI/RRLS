@@ -21,11 +21,11 @@ def test_walker_change_params(walker_env):
     env.unwrapped.change_params()
 
     assert np.array_equal(
-        env.model.geom_friction[:, 0],
+        env.get_wrapper_attr("model").geom_friction[:, 0],
         np.array([3.0, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 1.9]),
     )
-    assert env.model.body_mass[1] == desired_torsomass
-    assert env.model.body_mass[2] == desired_thighmass
+    assert env.get_wrapper_attr("model").body_mass[1] == desired_torsomass
+    assert env.get_wrapper_attr("model").body_mass[2] == desired_thighmass
 
     assert {k: v for k, v in env.unwrapped.get_params().items() if v is not None} == {
         "worldfriction": desired_worldfriction,

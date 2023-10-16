@@ -22,7 +22,7 @@ def test_ant_change_params(ant_env):
     assert env.unwrapped.model.body_mass[1] == desired_torsomass
     assert env.unwrapped.model.body_mass[2] == desired_frontleftlegmass
     assert env.unwrapped.model.body_mass[5] == desired_frontrightlegmass
-    # assert env.model.body_mass[4] == desired_frontrightlegmass
+    # assert env.get_wrapper_attr('model').body_mass[4] == desired_frontrightlegmass
 
     assert {k: v for k, v in env.unwrapped.get_params().items() if v is not None} == {
         "torsomass": desired_torsomass,

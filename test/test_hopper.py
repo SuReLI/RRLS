@@ -21,7 +21,8 @@ def test_hopper_change_params(hopper_env):
     env.unwrapped.change_params()
 
     assert np.array_equal(
-        env.model.geom_friction[0, 0], np.array(desired_worldfriction)
+        env.get_wrapper_attr("model").geom_friction[0, 0],
+        np.array(desired_worldfriction),
     )
     assert env.unwrapped.model.body_mass[1] == desired_torsomass
     assert env.unwrapped.model.body_mass[2] == desired_thighmass

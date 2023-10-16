@@ -22,7 +22,7 @@ def test_run_an_episode(env):
 
 @pytest.mark.parametrize("env", adversarial_envs)
 def test_adversarial_params_change(env):
-    params_bound = env.params_bound
+    params_bound = env.get_wrapper_attr("params_bound")
     done = False
     truncated = False
     _, _ = env.reset()
