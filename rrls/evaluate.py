@@ -35,15 +35,17 @@ def generate_evaluation_set(
     """
     # Generate all combinations of environments given the mesh
     eval_envs = []
-    parameters_range = {
+    parameters_values = {
         parameter_name: np.arange(
             start=bound_value[0],
             stop=bound_value[1],  # type: ignore
-            step=(bound_value[1] - bound_value[0]) / (bound_value - 1),  # type: ignore
+            step=(bound_value[1] - bound_value[0]) / nb_mesh_dim,  # type: ignore
         ).tolist()
         for parameter_name, bound_value in param_bounds.items()
     }
-    for params in itertools.product(*parameters_range.values()):
+    # TODO: FIX THIS
+    for values in itertools.product(*parameters_values.values()):
+        params = dict(zip(parameters_values.keys(), values))
         env = modified_env(**params)
         eval_envs.append(env)
 
