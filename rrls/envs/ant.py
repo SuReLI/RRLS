@@ -103,6 +103,9 @@ class RobustAnt(AntEnv):
         }
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
+        if options is not None:
+            self.set_params(**options)
+            self.change_params()
         obs, info = super().reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
