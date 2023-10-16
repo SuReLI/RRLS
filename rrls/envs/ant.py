@@ -21,6 +21,25 @@ class AntParamsBound(Enum):
 
 
 class RobustAnt(AntEnv):
+    """
+    Robust Ant environment. You can change the parameters of the environment using options in
+    the reset method or by using the set_params method. The parameters are changed by calling
+    the change_params method. The parameters are:
+        - torsomass
+        - frontleftlegmass
+        - frontleftlegauxmass
+        - frontleftleganklemass
+        - frontrightlegmass
+        - frontrightlegauxmass
+        - frontrightleganklemass
+        - backleftlegmass
+        - backleftlegauxmass
+        - backleftleganklemass
+        - backrightlegmass
+        - backrightlegauxmass
+        - backrightleganklemass
+    """
+
     def __init__(
         self,
         torsomass: float | None = None,

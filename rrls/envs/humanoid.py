@@ -22,25 +22,22 @@ class HumanoidStandupParamsBound(Enum):
 
 class RobustHumanoidStandUp(HumanoidStandupEnv):
     """
-    A class to represent a robust humanoid in an environment, with a
-    customizable mass distribution. It's a subclass of the
-    HumanoidStandupEnv class, allowing a humanoid to stand up
-    with specific mass parameters.
-
-    Attributes:
-        torsomass (float | None): The mass of the torso.
-        lwaistmass (float | None): The mass of the waist.
-        pelvismass (float | None): The mass of the pelvis.
-        rightthighmass (float | None): The mass of the right thigh.
-        rightshinmass (float | None): The mass of the right shin.
-        rightfootmass (float | None): The mass of the right foot.
-        leftthighmass (float | None): The mass of the left thigh.
-        leftshinmass (float | None): The mass of the left shin.
-        leftfootmass (float | None): The mass of the left foot.
-        rightupperarmmass (float | None): The mass of the right upper arm.
-        rightlowerarmmass (float | None): The mass of the right lower arm.
-        leftupperarmmass (float | None): The mass of the left upper arm.
-        leftlowerarmmass (float | None): The mass of the left lower arm.
+    Robust Humanoid environment. You can change the parameters of the environment using options in
+    the reset method or by using the set_params method. The parameters are changed by calling
+    the change_params method. The parameters are:
+        - torsomass
+        - lwaistmass
+        - pelvismass
+        - rightthighmass
+        - rightshinmass
+        - rightfootmass
+        - leftthighmass
+        - leftshinmass
+        - leftfootmass
+        - rightupperarmmass
+        - rightlowerarmmass
+        - leftupperarmmass
+        - leftlowerarmmass
     """
 
     def __init__(

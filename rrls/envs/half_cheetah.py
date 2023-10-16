@@ -21,6 +21,20 @@ class HalfCheetahParamsBound(Enum):
 
 
 class RobustHalfCheetah(HalfCheetahEnv):
+    """
+    Robust HalfCheetah environment. You can change the parameters of the environment using options in
+    the reset method or by using the set_params method. The parameters are changed by calling
+    the change_params method. The parameters are:
+        - worldfriction
+        - torsomass
+        - backthighmass
+        - backshinmass
+        - backfootmass
+        - forwardthighmass
+        - forwardshinmass
+        - forwardfootmass
+    """
+
     def __init__(
         self,
         worldfriction: float | None = None,

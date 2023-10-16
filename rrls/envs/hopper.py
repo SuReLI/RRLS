@@ -21,6 +21,17 @@ class HopperParamsBound(Enum):
 
 
 class RobustHopper(HopperEnv):
+    """
+    Robust Hopper environment. You can change the parameters of the environment using options in
+    the reset method or by using the set_params method. The parameters are changed by calling
+    the change_params method. The parameters are:
+        - worldfriction
+        - torsomass
+        - thighmass
+        - legmass
+        - footmass
+    """
+
     def __init__(
         self,
         worldfriction: float | None = None,

@@ -21,6 +21,20 @@ class Walker2dParamsBound(Enum):
 
 
 class RobustWalker2d(Walker2dEnv):
+    """
+    Robust Walker2d environment. You can change the parameters of the environment using options in
+    the reset method or by using the set_params method. The parameters are changed by calling
+    the change_params method. The parameters are:
+        - worldfriction
+        - torsomass
+        - thighmass
+        - legmass
+        - footmass
+        - leftthighmass
+        - leftlegmass
+        - leftfootmass
+    """
+
     def __init__(
         self,
         worldfriction: float | None = None,

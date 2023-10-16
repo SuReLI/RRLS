@@ -16,6 +16,14 @@ class InvertedPendulumParamsBound(Enum):
 
 
 class RobustInvertedPendulum(InvertedPendulumEnv):
+    """
+    Robust Inverted Pendulum environment. You can change the parameters of the environment using options in
+    the reset method or by using the set_params method. The parameters are changed by calling
+    the change_params method. The parameters are:
+        - polemass
+        - cartmass
+    """
+
     def __init__(self, polemass: float | None = None, cartmass: float | None = None):
         self.polemass = polemass
         self.cartmass = cartmass
