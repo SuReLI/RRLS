@@ -43,7 +43,6 @@ def generate_evaluation_set(
         ).tolist()
         for parameter_name, bound_value in param_bounds.items()
     }
-    # TODO: FIX THIS
     for values in itertools.product(*parameters_values.values()):
         params = dict(zip(parameters_values.keys(), values))
         env = modified_env(**params)
