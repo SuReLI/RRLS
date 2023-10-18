@@ -2,12 +2,12 @@ from __future__ import annotations
 
 from gymnasium.envs.registration import register
 
-from . import envs, wrapper
+from . import envs, wrappers
 from .evaluate import generate_evaluation_set
 
 __all__ = [
     "envs",
-    "wrapper",
+    "wrappers",
     "generate_evaluation_set",
 ]
 
@@ -60,7 +60,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHalfCheetah,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HalfCheetahParamsBound.THREE_DIM.value,
         },
     )
@@ -70,7 +70,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHalfCheetah,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HalfCheetahParamsBound.TWO_DIM.value,
         },
     )
@@ -80,7 +80,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHalfCheetah,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HalfCheetahParamsBound.ONE_DIM.value,
         },
     )
@@ -91,7 +91,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustAnt,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.AntParamsBound.THREE_DIM.value,
         },
     )
@@ -101,7 +101,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustAnt,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.AntParamsBound.TWO_DIM.value,
         },
     )
@@ -111,7 +111,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustAnt,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.AntParamsBound.ONE_DIM.value,
         },
     )
@@ -122,7 +122,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHopper,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HopperParamsBound.THREE_DIM.value,
         },
     )
@@ -132,7 +132,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHopper,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HopperParamsBound.TWO_DIM.value,
         },
     )
@@ -142,7 +142,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHopper,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HopperParamsBound.ONE_DIM.value,
         },
     )
@@ -154,7 +154,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHumanoidStandUp,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HumanoidStandupParamsBound.THREE_DIM.value,
         },
     )
@@ -164,7 +164,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHumanoidStandUp,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HumanoidStandupParamsBound.TWO_DIM.value,
         },
     )
@@ -174,7 +174,7 @@ def register_robotics_envs():
         max_episode_steps=1000,
         kwargs={
             "cls_env": envs.RobustHumanoidStandUp,
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.HumanoidStandupParamsBound.ONE_DIM.value,
         },
     )
@@ -186,7 +186,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "cls_env": envs.RobustInvertedPendulum,
             "params_bound": envs.InvertedPendulumParamsBound.TWO_DIM.value,
         },
@@ -197,7 +197,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DynamicAdversarial,
+            "wrapper": wrappers.DynamicAdversarial,
             "cls_env": envs.RobustInvertedPendulum,
             "params_bound": envs.InvertedPendulumParamsBound.ONE_DIM.value,
         },
@@ -211,7 +211,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHalfCheetah,
             "params_bound": envs.HalfCheetahParamsBound.THREE_DIM.value,
         },
@@ -221,7 +221,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHalfCheetah,
             "params_bound": envs.HalfCheetahParamsBound.TWO_DIM.value,
         },
@@ -231,7 +231,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHalfCheetah,
             "params_bound": envs.HalfCheetahParamsBound.ONE_DIM.value,
         },
@@ -243,7 +243,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustAnt,
             "params_bound": envs.AntParamsBound.THREE_DIM.value,
         },
@@ -253,7 +253,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustAnt,
             "params_bound": envs.AntParamsBound.TWO_DIM.value,
         },
@@ -263,7 +263,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustAnt,
             "params_bound": envs.AntParamsBound.ONE_DIM.value,
         },
@@ -275,7 +275,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHopper,
             "params_bound": envs.HopperParamsBound.THREE_DIM.value,
         },
@@ -286,7 +286,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHopper,
             "params_bound": envs.HopperParamsBound.TWO_DIM.value,
         },
@@ -296,7 +296,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHopper,
             "params_bound": envs.HopperParamsBound.ONE_DIM.value,
         },
@@ -307,7 +307,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHumanoidStandUp,
             "params_bound": envs.HumanoidStandupParamsBound.THREE_DIM.value,
         },
@@ -317,7 +317,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHumanoidStandUp,
             "params_bound": envs.HumanoidStandupParamsBound.TWO_DIM.value,
         },
@@ -327,7 +327,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustHumanoidStandUp,
             "params_bound": envs.HumanoidStandupParamsBound.ONE_DIM.value,
         },
@@ -338,7 +338,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustInvertedPendulum,
             "params_bound": envs.InvertedPendulumParamsBound.TWO_DIM.value,
         },
@@ -348,7 +348,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustInvertedPendulum,
             "params_bound": envs.InvertedPendulumParamsBound.ONE_DIM.value,
         },
@@ -359,7 +359,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustWalker2d,
             "params_bound": envs.Walker2dParamsBound.THREE_DIM.value,
         },
@@ -369,7 +369,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustWalker2d,
             "params_bound": envs.Walker2dParamsBound.TWO_DIM.value,
         },
@@ -379,72 +379,72 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.DomainRandomization,
+            "wrapper": wrappers.DomainRandomization,
             "cls_env": envs.RobustWalker2d,
             "params_bound": envs.Walker2dParamsBound.ONE_DIM.value,
         },
     )
     register(
-        id="rrls:probabilistic-action-robust-halfcheetah",
+        id="probabilistic-action-robust-halfcheetah",
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.ProbalistActionRobustWrapper,
+            "wrapper": wrappers.ProbalisticActionRobust,
             "cls_env": envs.RobustHalfCheetah,
             "alpha": 0.1,
         },
     )
 
     register(
-        id="rrls:probabilistic-action-robust-ant",
+        id="probabilistic-action-robust-ant",
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.ProbalistActionRobustWrapper,
+            "wrapper": wrappers.ProbalisticActionRobust,
             "cls_env": envs.RobustAnt,
             "alpha": 0.1,
         },
     )
 
     register(
-        id="rrls:probabilistic-action-robust-hopper",
+        id="probabilistic-action-robust-hopper",
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.ProbalistActionRobustWrapper,
+            "wrapper": wrappers.ProbalisticActionRobust,
             "cls_env": envs.RobustHopper,
             "alpha": 0.1,
         },
     )
 
     register(
-        id="rrls:probabilistic-action-robust-humanoidstandup",
+        id="probabilistic-action-robust-humanoidstandup",
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.ProbalistActionRobustWrapper,
+            "wrapper": wrappers.ProbalisticActionRobust,
             "cls_env": envs.RobustHumanoidStandUp,
             "alpha": 0.1,
         },
     )
 
     register(
-        id="rrls:probabilistic-action-robust-invertedpendulum",
+        id="probabilistic-action-robust-invertedpendulum",
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.ProbalistActionRobustWrapper,
+            "wrapper": wrappers.ProbalisticActionRobust,
             "cls_env": envs.RobustInvertedPendulum,
             "alpha": 0.1,
         },
     )
 
     register(
-        id="rrls:probabilistic-action-robust-walker",
+        id=":probabilistic-action-robust-walker",
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrapper.ProbalistActionRobustWrapper,
+            "wrapper": wrappers.ProbalisticActionRobust,
             "cls_env": envs.RobustWalker2d,
             "alpha": 0.1,
         },
