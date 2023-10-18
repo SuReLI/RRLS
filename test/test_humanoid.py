@@ -17,7 +17,6 @@ def test_humanoid_change_params(humanoid_env):
         leftthighmass=desired_leftthighmass,
         rightfootmass=desired_rightfootmass,
     )
-    env.unwrapped.change_params()
 
     assert env.unwrapped.model.body_mass[1] == desired_torsomass
     assert env.unwrapped.model.body_mass[7] == desired_leftthighmass

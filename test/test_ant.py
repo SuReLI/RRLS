@@ -17,7 +17,6 @@ def test_ant_change_params(ant_env):
         frontleftlegmass=desired_frontleftlegmass,
         frontrightlegmass=desired_frontrightlegmass,
     )
-    env.unwrapped.change_params()
 
     assert env.unwrapped.model.body_mass[1] == desired_torsomass
     assert env.unwrapped.model.body_mass[2] == desired_frontleftlegmass

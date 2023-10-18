@@ -74,7 +74,7 @@ class RobustHumanoidStandUp(HumanoidStandupEnv):
             leftlowerarmmass=leftlowerarmmass,
         )
 
-        self.change_params()
+        self._change_params()
 
     def set_params(
         self,
@@ -105,8 +105,7 @@ class RobustHumanoidStandUp(HumanoidStandupEnv):
         self.rightlowerarmmass = rightlowerarmmass
         self.leftupperarmmass = leftupperarmmass
         self.leftlowerarmmass = leftlowerarmmass
-        # TODO: uncomment this line after change wrappers
-        # self.change_params()
+        self._change_params()
 
     def get_params(self):
         return {
@@ -128,7 +127,6 @@ class RobustHumanoidStandUp(HumanoidStandupEnv):
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-            self.change_params()
         obs, info = super().reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
@@ -138,7 +136,7 @@ class RobustHumanoidStandUp(HumanoidStandupEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_params(self):
+    def _change_params(self):
         if self.torsomass is not None:
             self.model.body_mass[1] = self.torsomass
 

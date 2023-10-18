@@ -72,7 +72,7 @@ class RobustAnt(AntEnv):
             backrightlegauxmass=backrightlegauxmass,
             backrightleganklemass=backrightleganklemass,
         )
-        self.change_params()
+        self._change_params()
 
     def set_params(
         self,
@@ -103,6 +103,7 @@ class RobustAnt(AntEnv):
         self.backrightlegmass = backrightlegmass
         self.backrightlegauxmass = backrightlegauxmass
         self.backrightleganklemass = backrightleganklemass
+        self._change_params()
 
     def get_params(self):
         return {
@@ -124,7 +125,6 @@ class RobustAnt(AntEnv):
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-            self.change_params()
         obs, info = super().reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
@@ -134,7 +134,7 @@ class RobustAnt(AntEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_params(self):
+    def _change_params(self):
         if self.torsomass is not None:
             self.model.body_mass[1] = self.torsomass
 

@@ -29,11 +29,12 @@ class RobustInvertedPendulum(InvertedPendulumEnv):
         self.cartmass = cartmass
         super().__init__()
 
-        self.change_params()
+        self._change_params()
 
     def set_params(self, polemass: float | None = None, cartmass: float | None = None):
         self.polemass = polemass
         self.cartmass = cartmass
+        self._change_params()
 
     def get_params(self):
         return {
@@ -44,7 +45,6 @@ class RobustInvertedPendulum(InvertedPendulumEnv):
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-            self.change_params()
         obs, info = super().reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
@@ -54,7 +54,7 @@ class RobustInvertedPendulum(InvertedPendulumEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_params(self):
+    def _change_params(self):
         if self.polemass is not None:
             self.model.body_mass[2] = self.polemass
         if self.cartmass is not None:

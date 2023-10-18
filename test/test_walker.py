@@ -18,7 +18,6 @@ def test_walker_change_params(walker_env):
         torsomass=desired_torsomass,
         thighmass=desired_thighmass,
     )
-    env.unwrapped.change_params()
 
     assert np.array_equal(
         env.get_wrapper_attr("model").geom_friction[:, 0],

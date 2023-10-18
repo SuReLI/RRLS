@@ -18,7 +18,6 @@ def test_halfcheetah_change_params(halfcheetah_env):
         torsomass=desired_torsomass,
         backthighmass=desired_backthighmass,
     )
-    env.unwrapped.change_params()
 
     assert np.array_equal(
         env.unwrapped.model.geom_friction[:, 0], np.array([desired_worldfriction] * 9)

@@ -57,7 +57,7 @@ class RobustWalker2d(Walker2dEnv):
             leftlegmass=leftlegmass,
             leftfootmass=leftfootmass,
         )
-        self.change_params()
+        self._change_params()
 
     def set_params(
         self,
@@ -78,6 +78,7 @@ class RobustWalker2d(Walker2dEnv):
         self.leftthighmass = leftthighmass
         self.leftlegmass = leftlegmass
         self.leftfootmass = leftfootmass
+        self._change_params()
 
     def get_params(self):
         return {
@@ -94,7 +95,6 @@ class RobustWalker2d(Walker2dEnv):
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-            self.change_params()
         obs, info = super().reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
@@ -104,7 +104,7 @@ class RobustWalker2d(Walker2dEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_params(self):
+    def _change_params(self):
         if self.worldfriction is not None:
             self.model.geom_friction[0, 0] = self.worldfriction
 

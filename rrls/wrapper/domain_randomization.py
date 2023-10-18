@@ -18,7 +18,7 @@ class DomainRandomization(gym.Wrapper):
     Args:
         env (ModifiedParamsEnv): The environment to be wrapped.
         randomize_fn (Callable): A function that takes the parameter boundaries as input and returns
-            a new set of parameters.
+            a new set of parameters. If None, a uniform randomization is used.
 
     Attributes:
         env (ModifiedParamsEnv): The environment to be wrapped.
@@ -56,7 +56,6 @@ class DomainRandomization(gym.Wrapper):
         """
         self.params = self.randomize_fn(self.params_bound)
         self.env.unwrapped.set_params(**self.params)
-        self.env.unwrapped.change_params()
         return self.env.reset()
 
     def step(self, action):

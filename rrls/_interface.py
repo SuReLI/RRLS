@@ -10,15 +10,6 @@ class ModifiedParams(Protocol):
     The `ModifiedParams` Protocol defines a set of methods for modifying and accessing parameters.
     """
 
-    def change_params(self, **kwargs):
-        """
-        Changes parameters according to provided keyword arguments.
-
-        Args:
-            kwargs (dict): parameters to be changed along with their new values.
-        """
-        ...
-
     def set_params(self, **kwargs):
         """
         Sets parameters according to provided keyword arguments.
@@ -45,15 +36,6 @@ class ModifiedParamsEnv(ModifiedParams, gym.Env):
     The `ModifiedParamsEnv` class is a Gym Environment that supports parameter modifications.
     """
 
-    def change_params(self, **kwargs):
-        """
-        Changes parameters according to provided keyword arguments.
-
-        Args:
-            kwargs (dict): parameters to be changed along with their new values.
-        """
-        ...
-
     def set_params(self, **kwargs):
         """
         Sets parameters according to provided keyword arguments.
@@ -77,7 +59,7 @@ def check_protocol_modified_params_env(obj: Any) -> bool:
     """
     Checks if an object complies with the `ModifiedParamsEnv` protocol.
     """
-    required_methods = ["change_params", "set_params", "get_params"]
+    required_methods = ["set_params", "get_params"]
     protocal_compliant = all(
         callable(getattr(obj, method, None)) for method in required_methods
     )

@@ -61,7 +61,7 @@ class RobustHalfCheetah(HalfCheetahEnv):
             forwardshinmass=forwardshinmass,
             forwardfootmass=forwardfootmass,
         )
-        self.change_params()
+        self._change_params()
 
     def set_params(
         self,
@@ -82,6 +82,7 @@ class RobustHalfCheetah(HalfCheetahEnv):
         self.forwardthighmass = forwardthighmass
         self.forwardshinmass = forwardshinmass
         self.forwardfootmass = forwardfootmass
+        self._change_params()
 
     def get_params(self):
         return {
@@ -98,7 +99,6 @@ class RobustHalfCheetah(HalfCheetahEnv):
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-            self.change_params()
 
         obs, info = super().reset(seed=seed, options=options)
         info.update(self.get_params())
@@ -109,7 +109,7 @@ class RobustHalfCheetah(HalfCheetahEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_params(self):
+    def _change_params(self):
         if self.worldfriction is not None:
             self.model.geom_friction[:, 0] = self.worldfriction
         if self.torsomass is not None:

@@ -49,7 +49,7 @@ class RobustHopper(HopperEnv):
             legmass=legmass,
             footmass=footmass,
         )
-        self.change_params()
+        self._change_params()
 
     def set_params(
         self,
@@ -64,18 +64,20 @@ class RobustHopper(HopperEnv):
         self.thighmass = thighmass
         self.legmass = legmass
         self.footmass = footmass
+        self._change_params()
 
     def get_params(self):
         return {
             "worldfriction": self.worldfriction,
             "torsomass": self.torsomass,
             "thighmass": self.thighmass,
+            "legmass": self.legmass,
+            "footmass": self.footmass,
         }
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-            self.change_params()
         obs, info = super().reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
@@ -85,7 +87,7 @@ class RobustHopper(HopperEnv):
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
-    def change_params(self):
+    def _change_params(self):
         if self.worldfriction is not None:
             self.model.geom_friction[0, 0] = self.worldfriction
 

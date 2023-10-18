@@ -15,7 +15,6 @@ def test_pendulum_change_params(pendulum_env):
         polemass=desired_polemass,
         cartmass=desired_cartmass,
     )
-    env.unwrapped.change_params()
 
     assert env.unwrapped.model.body_mass[1] == desired_cartmass
     assert env.unwrapped.model.body_mass[2] == desired_polemass
