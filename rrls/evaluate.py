@@ -27,11 +27,15 @@ def generate_evaluation_set(
     nb_mesh_dim: int = 10,
 ) -> list[ModifiedParamsEnv]:
     """
-    Evaluate the modified environment with the given parameter bounds and mesh environments.
+    Generate a list of environments to be used for evaluation by meshing the parameter space.
 
     Args:
+        modified_env (Callable[[], ModifiedParamsEnv]): A function that returns a modified environment.
+        param_bounds (dict[str, Annotated[list[float], 2]]): Parameter boundaries.
+        nb_mesh_dim (int): Number of mesh dimensions.
 
     Returns:
+        list[ModifiedParamsEnv]: A list of environments to be used for evaluation.
     """
     # Generate all combinations of environments given the mesh
     eval_envs = []
