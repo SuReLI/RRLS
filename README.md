@@ -48,7 +48,7 @@ for env in gym.envs.registry:
 ```python
 import gymnasium as gym
 
-env = gym.make("rrls:robust-ant")
+env = gym.make("robust-ant")
 params = env.get_params()  # Parameters will be None if reset method hasn't been called.
 
 # Set all parameters to 1
@@ -58,7 +58,7 @@ params = {k: 1 for k in params.keys()}
 obs, info = env.reset(options=params)
 
 # Retrieve environment parameters from the info dictionary
-print(info["torso_mass"])  # Outputs: 1
+print(info["torso_mass"])  # Outputs: all keys are equals to one 1
 
 terminated, truncated = False, False
 
