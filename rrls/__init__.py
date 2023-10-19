@@ -389,7 +389,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrappers.ProbalisticActionRobust,
+            "wrapper": wrappers.ProbabilisticActionRobust,
             "cls_env": envs.RobustHalfCheetah,
             "alpha": 0.1,
         },
@@ -400,7 +400,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrappers.ProbalisticActionRobust,
+            "wrapper": wrappers.ProbabilisticActionRobust,
             "cls_env": envs.RobustAnt,
             "alpha": 0.1,
         },
@@ -411,7 +411,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrappers.ProbalisticActionRobust,
+            "wrapper": wrappers.ProbabilisticActionRobust,
             "cls_env": envs.RobustHopper,
             "alpha": 0.1,
         },
@@ -422,7 +422,7 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrappers.ProbalisticActionRobust,
+            "wrapper": wrappers.ProbabilisticActionRobust,
             "cls_env": envs.RobustHumanoidStandUp,
             "alpha": 0.1,
         },
@@ -433,18 +433,18 @@ def register_robotics_envs():
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrappers.ProbalisticActionRobust,
+            "wrapper": wrappers.ProbabilisticActionRobust,
             "cls_env": envs.RobustInvertedPendulum,
             "alpha": 0.1,
         },
     )
 
     register(
-        id=":probabilistic-action-robust-walker",
+        id="probabilistic-action-robust-walker",
         entry_point=make_wrapped_env,  # type: ignore
         max_episode_steps=1000,
         kwargs={
-            "wrapper": wrappers.ProbalisticActionRobust,
+            "wrapper": wrappers.ProbabilisticActionRobust,
             "cls_env": envs.RobustWalker2d,
             "alpha": 0.1,
         },

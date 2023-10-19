@@ -60,8 +60,8 @@ def check_protocol_modified_params_env(obj: Any) -> bool:
     Checks if an object complies with the `ModifiedParamsEnv` protocol.
     """
     required_methods = ["set_params", "get_params"]
-    protocal_compliant = all(
+    protocol_compliant = all(
         callable(getattr(obj, method, None)) for method in required_methods
     )
     is_gym_env = isinstance(obj, gym.Env)
-    return protocal_compliant and is_gym_env
+    return protocol_compliant and is_gym_env

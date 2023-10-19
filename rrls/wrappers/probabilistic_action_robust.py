@@ -6,7 +6,7 @@ import numpy as np
 from rrls._interface import ModifiedParamsEnv
 
 
-class ProbalisticActionRobust(gym.Wrapper):
+class ProbabilisticActionRobust(gym.Wrapper):
     """
     An adversarial wrapper that introduces an adversarial action.
 
