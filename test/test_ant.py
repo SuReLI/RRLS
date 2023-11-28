@@ -5,11 +5,11 @@ import pytest
 
 import rrls  # noqa: F401
 
-env = gym.make("rrls/robust-ant-v0")
+ant_env = gym.make("rrls/robust-ant-v0")
 
 
-@pytest.mark.parametrize("ant_env", [env])
-def test_ant_change_params(ant_env):
+@pytest.mark.parametrize("env", [ant_env])
+def test_ant_change_params(env):
     desired_torsomass = 3.0
     desired_frontleftlegmass = 4.0
     desired_frontrightlegmass = 5.0

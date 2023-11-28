@@ -5,11 +5,11 @@ import pytest
 
 import rrls  # noqa: F401
 
-env = gym.make("rrls/robust-humanoidstandup-v0")
+humanoid_env = gym.make("rrls/robust-humanoidstandup-v0")
 
 
-@pytest.mark.parametrize("humanoid_env", [env])
-def test_humanoid_change_params(humanoid_env):
+@pytest.mark.parametrize("env", [humanoid_env])
+def test_humanoid_change_params(env):
     desired_torsomass = 3.0
     desired_leftthighmass = 4.0
     desired_rightfootmass = 5.0

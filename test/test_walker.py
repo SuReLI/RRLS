@@ -6,11 +6,11 @@ import pytest
 
 import rrls  # noqa: F401
 
-env = gym.make("rrls/robust-walker-v0")
+walker_env = gym.make("rrls/robust-walker-v0")
 
 
-@pytest.mark.parametrize("walker_env", [env])
-def test_walker_change_params(walker_env):
+@pytest.mark.parametrize("env", [walker_env])
+def test_walker_change_params(env):
     desired_worldfriction = 3.0
     desired_torsomass = 4.0
     desired_thighmass = 5.0

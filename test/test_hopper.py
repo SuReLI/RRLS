@@ -6,11 +6,11 @@ import pytest
 
 import rrls  # noqa: F401
 
-env = gym.make("rrls/robust-hopper-v0")
+hopper_env = gym.make("rrls/robust-hopper-v0")
 
 
-@pytest.mark.parametrize("hopper_env", [env])
-def test_hopper_change_params(hopper_env):
+@pytest.mark.parametrize("env", [hopper_env])
+def test_hopper_change_params(env):
     desired_worldfriction = 3.0
     desired_torsomass = 4.0
     desired_thighmass = 5.0

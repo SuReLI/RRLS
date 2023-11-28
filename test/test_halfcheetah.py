@@ -6,11 +6,11 @@ import pytest
 
 import rrls  # noqa: F401
 
-env = gym.make("rrls/robust-halfcheetah-v0")
+halfcheetah_env = gym.make("rrls/robust-halfcheetah-v0")
 
 
-@pytest.mark.parametrize("halfcheetah_env", [env])
-def test_halfcheetah_change_params(halfcheetah_env):
+@pytest.mark.parametrize("env", [halfcheetah_env])
+def test_halfcheetah_change_params(env):
     desired_worldfriction = 3.0
     desired_torsomass = 4.0
     desired_backthighmass = 5.0

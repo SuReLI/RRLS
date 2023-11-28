@@ -5,11 +5,11 @@ import pytest
 
 import rrls  # noqa: F401
 
-env = gym.make("rrls/robust-invertedpendulum-v0")
+pendulum_env = gym.make("rrls/robust-invertedpendulum-v0")
 
 
-@pytest.mark.parametrize("pendulum_env", [env])
-def test_pendulum_change_params(pendulum_env):
+@pytest.mark.parametrize("env", [pendulum_env])
+def test_pendulum_change_params(env):
     desired_polemass = 3.0
     desired_cartmass = 4.0
 
