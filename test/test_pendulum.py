@@ -3,11 +3,11 @@ from __future__ import annotations
 import gymnasium as gym
 import pytest
 
-env = gym.make("robust-invertedpendulum")
+pendulum_env = gym.make("robust-invertedpendulum")
 
 
-@pytest.mark.parametrize("pendulum_env", [env])
-def test_pendulum_change_params(pendulum_env):
+@pytest.mark.parametrize("env", [pendulum_env])
+def test_pendulum_change_params(env):
     desired_polemass = 3.0
     desired_cartmass = 4.0
 

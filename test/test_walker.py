@@ -4,11 +4,11 @@ import gymnasium as gym
 import numpy as np
 import pytest
 
-env = gym.make("robust-walker")
+walker_env = gym.make("robust-walker")
 
 
-@pytest.mark.parametrize("walker_env", [env])
-def test_walker_change_params(walker_env):
+@pytest.mark.parametrize("env", [walker_env])
+def test_walker_change_params(env):
     desired_worldfriction = 3.0
     desired_torsomass = 4.0
     desired_thighmass = 5.0
