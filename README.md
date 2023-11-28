@@ -28,12 +28,12 @@ The package offers the following environments:
 
 | Environment Name     | id                                     |
 |----------------------|-------------------------------------------|
-| Ant                  | `robust-ant`       |
-| HalfCheetah          | `robust-halfcheetah`|
-| Hopper               | `robust-hopper`    |
-| HumanoidStandup      | `robust-humanoidstandup` |
-| InvertedPendulum     | `robust-invertedpendulum` |
-| Walker2d             | `robust-walker2d`  |
+| Ant                  | `robust-ant-v0`       |
+| HalfCheetah          | `robust-halfcheetah-v0`|
+| Hopper               | `robust-hopper-v0`    |
+| HumanoidStandup      | `robust-humanoidstandup-v0` |
+| InvertedPendulum     | `robust-invertedpendulum-v0` |
+| Walker2d             | `robust-walker2d-v0`  |
 
 And lot more ... if you want to get a full list of the environments, you can use the following code:
 
@@ -48,8 +48,9 @@ for env in gym.envs.registry:
 
 ```python
 import gymnasium as gym
+import rrls
 
-env = gym.make("rrls/robust-ant")
+env = gym.make("rrls/robust-ant-v0")
 params = env.get_params()  # Parameters will be None if reset method hasn't been called.
 
 # Set all parameters to 1
@@ -126,6 +127,7 @@ eval_env_set = generate_evaluation_set(
 ## 📖 Project Maintainers
 
 - [Adil Zouitine](https://github.com/AdilZouitine) - IRT Saint-Exupery, ISAE Supaero, & Sureli Team
+- [David Bertoin](https://github.com/DavidBert) - IRT Saint-Exupery, INSA Toulouse, ISAE Supaero, & Sureli Team
 - [Emmanuel Rachelson](https://github.com/erachelson) - ISAE Supaero & Sureli Team
 
 
