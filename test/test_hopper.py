@@ -4,7 +4,9 @@ import gymnasium as gym
 import numpy as np
 import pytest
 
-env = gym.make("robust-hopper")
+import rrls  # noqa: F401
+
+env = gym.make("rrls/robust-hopper-v0")
 
 
 @pytest.mark.parametrize("hopper_env", [env])
@@ -13,7 +15,7 @@ def test_hopper_change_params(hopper_env):
     desired_torsomass = 4.0
     desired_thighmass = 5.0
 
-    env.unwrapped.set_params(
+    env.set_params(
         worldfriction=desired_worldfriction,
         torsomass=desired_torsomass,
         thighmass=desired_thighmass,
@@ -25,7 +27,7 @@ def test_hopper_change_params(hopper_env):
     )
     assert env.unwrapped.model.body_mass[1] == desired_torsomass
     assert env.unwrapped.model.body_mass[2] == desired_thighmass
-    assert {k: v for k, v in env.unwrapped.get_params().items() if v is not None} == {
+    assert {k: v for k, v in env.get_params().items() if v is not None} == {
         "worldfriction": desired_worldfriction,
         "torsomass": desired_torsomass,
         "thighmass": desired_thighmass,
