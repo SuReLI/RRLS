@@ -28,7 +28,6 @@ jobs:
         mkdir $HOME/.mujoco
         tar -xzf mujoco210-linux-x86_64.tar.gz -C $HOME/.mujoco
         wget https://github.com/google-deepmind/mujoco/releases/download/2.3.3/mujoco-2.3.3-linux-x86_64.tar.gz
-        mkdir $HOME/.mujoco
         tar -xzf mujoco-2.3.3-linux-x86_64.tar.gz -C $HOME/.mujoco
         export
         # pip install gymnasium
