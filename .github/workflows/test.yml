@@ -24,6 +24,9 @@ jobs:
         pip install mujoco==2.3.3
         sudo apt-get update
         sudo apt-get install libglu1-mesa-dev libgl1-mesa-dev libosmesa6-dev xvfb patchelf ffmpeg cmake swig
+        wget https://github.com/google-deepmind/mujoco/releases/download/2.1.0/mujoco210-linux-x86_64.tar.gz
+        mkdir $HOME/.mujoco
+        tar -xzf mujoco210-linux-x86_64.tar.gz -C $HOME/.mujoco
         wget https://github.com/google-deepmind/mujoco/releases/download/2.3.3/mujoco-2.3.3-linux-x86_64.tar.gz
         mkdir $HOME/.mujoco
         tar -xzf mujoco-2.3.3-linux-x86_64.tar.gz -C $HOME/.mujoco
