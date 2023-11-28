@@ -1,4 +1,4 @@
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 ## Robust Reinforcement Learning Suite (rrls)
 <img src="./media/rrls_logo.png" width="200" height="200" alt="rrls Logo" />
@@ -40,7 +40,7 @@ And lot more ... if you want to get a full list of the environments, you can use
 ```python
 import gymnasium as gym
 for env in gym.envs.registry:
-    if "robust" in env:
+    if "rrls/robust" in env:
         print(env)
 ```
 
@@ -49,7 +49,7 @@ for env in gym.envs.registry:
 ```python
 import gymnasium as gym
 
-env = gym.make("robust-ant")
+env = gym.make("rrls/robust-ant")
 params = env.get_params()  # Parameters will be None if reset method hasn't been called.
 
 # Set all parameters to 1

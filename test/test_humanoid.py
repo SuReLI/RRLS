@@ -3,7 +3,9 @@ from __future__ import annotations
 import gymnasium as gym
 import pytest
 
-humanoid_env = gym.make("robust-humanoidstandup")
+import rrls  # noqa: F401
+
+humanoid_env = gym.make("rrls/robust-humanoidstandup-v0")
 
 
 @pytest.mark.parametrize("env", [humanoid_env])
@@ -12,7 +14,7 @@ def test_humanoid_change_params(env):
     desired_leftthighmass = 4.0
     desired_rightfootmass = 5.0
 
-    env.unwrapped.set_params(
+    env.set_params(
         torsomass=desired_torsomass,
         leftthighmass=desired_leftthighmass,
         rightfootmass=desired_rightfootmass,
@@ -22,7 +24,7 @@ def test_humanoid_change_params(env):
     assert env.unwrapped.model.body_mass[7] == desired_leftthighmass
     assert env.unwrapped.model.body_mass[6] == desired_rightfootmass
 
-    assert {k: v for k, v in env.unwrapped.get_params().items() if v is not None} == {
+    assert {k: v for k, v in env.get_params().items() if v is not None} == {
         "torsomass": desired_torsomass,
         "leftthighmass": desired_leftthighmass,
         "rightfootmass": desired_rightfootmass,

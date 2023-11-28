@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from enum import Enum
 
-from gymnasium.envs.mujoco.walker2d_v4 import Walker2dEnv
+import gymnasium as gym
+from gymnasium import Wrapper
 
 
 class Walker2dParamsBound(Enum):
@@ -20,7 +21,7 @@ class Walker2dParamsBound(Enum):
     }
 
 
-class RobustWalker2d(Walker2dEnv):
+class RobustWalker2d(Wrapper):
     """
     Robust Walker2d environment. You can change the parameters of the environment using options in
     the reset method or by using the set_params method. The parameters are changed by calling
@@ -35,6 +36,14 @@ class RobustWalker2d(Walker2dEnv):
         - leftfootmass
     """
 
+    metadata = {
+        "render_modes": [
+            "human",
+            "rgb_array",
+            "depth_array",
+        ],
+    }
+
     def __init__(
         self,
         worldfriction: float | None = None,
@@ -46,7 +55,7 @@ class RobustWalker2d(Walker2dEnv):
         leftlegmass: float | None = None,
         leftfootmass: float | None = None,
     ):
-        super().__init__()
+        super().__init__(env=gym.make("Walker2d-v5"))
         self.set_params(
             worldfriction=worldfriction,
             torsomass=torsomass,
@@ -95,36 +104,36 @@ class RobustWalker2d(Walker2dEnv):
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-        obs, info = super().reset(seed=seed, options=options)
+        obs, info = self.env.reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
 
     def step(self, action):
-        obs, reward, terminated, truncated, info = super().step(action)
+        obs, reward, terminated, truncated, info = self.env.step(action)
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
     def _change_params(self):
         if self.worldfriction is not None:
-            self.model.geom_friction[0, 0] = self.worldfriction
+            self.unwrapped.model.geom_friction[0, 0] = self.worldfriction
 
         if self.torsomass is not None:
-            self.model.body_mass[1] = self.torsomass
+            self.unwrapped.model.body_mass[1] = self.torsomass
 
         if self.thighmass is not None:
-            self.model.body_mass[2] = self.thighmass
+            self.unwrapped.model.body_mass[2] = self.thighmass
 
         if self.legmass is not None:
-            self.model.body_mass[3] = self.legmass
+            self.unwrapped.model.body_mass[3] = self.legmass
 
         if self.footmass is not None:
-            self.model.body_mass[4] = self.footmass
+            self.unwrapped.model.body_mass[4] = self.footmass
 
         if self.leftthighmass is not None:
-            self.model.body_mass[5] = self.leftthighmass
+            self.unwrapped.model.body_mass[5] = self.leftthighmass
 
         if self.leftlegmass is not None:
-            self.model.body_mass[6] = self.leftlegmass
+            self.unwrapped.model.body_mass[6] = self.leftlegmass
 
         if self.leftfootmass is not None:
-            self.model.body_mass[7] = self.leftfootmass
+            self.unwrapped.model.body_mass[7] = self.leftfootmass

@@ -60,3 +60,9 @@ class ProbabilisticActionRobust(gym.Wrapper):
         info.update({"agent action": action_agent})
         info.update({"adversarial_reward": -reward})
         return obs, reward, terminated, truncated, info
+
+    def set_params(self, **params):
+        self.env.set_params(**params)
+
+    def get_params(self):
+        return self.env.get_params()

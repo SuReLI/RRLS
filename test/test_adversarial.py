@@ -3,6 +3,8 @@ from __future__ import annotations
 import gymnasium as gym
 import pytest
 
+import rrls  # noqa: F401
+
 adversarial_envs = []
 envs = gym.envs.registry  # pyright: ignore
 for env in envs:
@@ -36,7 +38,7 @@ def test_adversarial_params_change(env):
         action_formated = _unnormalize_action_nature(action_formated, params_bound)  # type: ignore
 
         assert {
-            k: v for k, v in env.unwrapped.get_params().items() if v is not None
+            k: v for k, v in env.get_params().items() if v is not None
         } == action_formated
 
 

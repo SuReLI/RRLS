@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from enum import Enum
 
-from gymnasium.envs.mujoco.ant_v4 import AntEnv
+import gymnasium as gym
+from gymnasium import Wrapper
 
 
 class AntParamsBound(Enum):
@@ -20,7 +21,7 @@ class AntParamsBound(Enum):
     }
 
 
-class RobustAnt(AntEnv):
+class RobustAnt(Wrapper):
     """
     Robust Ant environment. You can change the parameters of the environment using options in
     the reset method or by using the set_params method. The parameters are changed by calling
@@ -40,6 +41,16 @@ class RobustAnt(AntEnv):
         - backrightleganklemass
     """
 
+    # HACK: This is a hack to avoid the following error:
+    # gymnasium.error.InvalidMetadata: Expect the environment metadata to be dict, actual type: <class 'module'>
+    metadata = {
+        "render_modes": [
+            "human",
+            "rgb_array",
+            "depth_array",
+        ],
+    }
+
     def __init__(
         self,
         torsomass: float | None = None,
@@ -56,7 +67,7 @@ class RobustAnt(AntEnv):
         backrightlegauxmass: float | None = None,
         backrightleganklemass: float | None = None,
     ):
-        super().__init__()
+        super().__init__(env=gym.make("Ant-v5"))
         self.set_params(
             torsomass=torsomass,
             frontleftlegmass=frontleftlegmass,
@@ -125,51 +136,51 @@ class RobustAnt(AntEnv):
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-        obs, info = super().reset(seed=seed, options=options)
+        obs, info = self.env.reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
 
     def step(self, action):
-        obs, reward, terminated, truncated, info = super().step(action)
+        obs, reward, terminated, truncated, info = self.env.step(action)
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
     def _change_params(self):
         if self.torsomass is not None:
-            self.model.body_mass[1] = self.torsomass
+            self.unwrapped.model.body_mass[1] = self.torsomass
 
         if self.frontleftlegmass is not None:
-            self.model.body_mass[2] = self.frontleftlegmass
+            self.unwrapped.model.body_mass[2] = self.frontleftlegmass
 
         if self.frontleftlegauxmass is not None:
-            self.model.body_mass[3] = self.frontleftlegauxmass
+            self.unwrapped.model.body_mass[3] = self.frontleftlegauxmass
 
         if self.frontleftleganklemass is not None:
-            self.model.body_mass[4] = self.frontleftleganklemass
+            self.unwrapped.model.body_mass[4] = self.frontleftleganklemass
 
         if self.frontrightlegmass is not None:
-            self.model.body_mass[5] = self.frontrightlegmass
+            self.unwrapped.model.body_mass[5] = self.frontrightlegmass
 
         if self.frontrightlegauxmass is not None:
-            self.model.body_mass[6] = self.frontrightlegauxmass
+            self.unwrapped.model.body_mass[6] = self.frontrightlegauxmass
 
         if self.frontrightleganklemass is not None:
-            self.model.body_mass[7] = self.frontrightleganklemass
+            self.unwrapped.model.body_mass[7] = self.frontrightleganklemass
 
         if self.backleftlegmass is not None:
-            self.model.body_mass[8] = self.backleftlegmass
+            self.unwrapped.model.body_mass[8] = self.backleftlegmass
 
         if self.backleftlegauxmass is not None:
-            self.model.body_mass[9] = self.backleftlegauxmass
+            self.unwrapped.model.body_mass[9] = self.backleftlegauxmass
 
         if self.backleftleganklemass is not None:
-            self.model.body_mass[10] = self.backleftleganklemass
+            self.unwrapped.model.body_mass[10] = self.backleftleganklemass
 
         if self.backrightlegmass is not None:
-            self.model.body_mass[11] = self.backrightlegmass
+            self.unwrapped.model.body_mass[11] = self.backrightlegmass
 
         if self.backrightlegauxmass is not None:
-            self.model.body_mass[12] = self.backrightlegauxmass
+            self.unwrapped.model.body_mass[12] = self.backrightlegauxmass
 
         if self.backrightleganklemass is not None:
-            self.model.body_mass[13] = self.backrightleganklemass
+            self.unwrapped.model.body_mass[13] = self.backrightleganklemass

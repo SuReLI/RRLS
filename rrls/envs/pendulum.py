@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from enum import Enum
 
-from gymnasium.envs.mujoco.inverted_pendulum_v4 import InvertedPendulumEnv
+import gymnasium as gym
+from gymnasium import Wrapper
 
 
 class InvertedPendulumParamsBound(Enum):
@@ -15,7 +16,7 @@ class InvertedPendulumParamsBound(Enum):
     }
 
 
-class RobustInvertedPendulum(InvertedPendulumEnv):
+class RobustInvertedPendulum(Wrapper):
     """
     Robust Inverted Pendulum environment. You can change the parameters of the environment using options in
     the reset method or by using the set_params method. The parameters are changed by calling
@@ -24,12 +25,17 @@ class RobustInvertedPendulum(InvertedPendulumEnv):
         - cartmass
     """
 
-    def __init__(self, polemass: float | None = None, cartmass: float | None = None):
-        self.polemass = polemass
-        self.cartmass = cartmass
-        super().__init__()
+    metadata = {
+        "render_modes": [
+            "human",
+            "rgb_array",
+            "depth_array",
+        ],
+    }
 
-        self._change_params()
+    def __init__(self, polemass: float | None = None, cartmass: float | None = None):
+        super().__init__(env=gym.make("InvertedPendulum-v5"))
+        self.set_params(polemass=polemass, cartmass=cartmass)
 
     def set_params(self, polemass: float | None = None, cartmass: float | None = None):
         self.polemass = polemass
@@ -45,17 +51,17 @@ class RobustInvertedPendulum(InvertedPendulumEnv):
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)
-        obs, info = super().reset(seed=seed, options=options)
+        obs, info = self.env.reset(seed=seed, options=options)
         info.update(self.get_params())
         return obs, info
 
     def step(self, action):
-        obs, reward, terminated, truncated, info = super().step(action)
+        obs, reward, terminated, truncated, info = self.env.step(action)
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
 
     def _change_params(self):
-        if self.polemass is not None:
-            self.model.body_mass[2] = self.polemass
         if self.cartmass is not None:
-            self.model.body_mass[1] = self.cartmass
+            self.unwrapped.model.body_mass[1] = self.cartmass
+        if self.polemass is not None:
+            self.unwrapped.model.body_mass[2] = self.polemass

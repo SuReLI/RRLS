@@ -3,6 +3,8 @@ from __future__ import annotations
 import gymnasium as gym
 import pytest
 
+import rrls  # noqa: F401
+
 probabilistic_envs = []
 envs = gym.envs.registry  # pyright: ignore
 for env in envs:

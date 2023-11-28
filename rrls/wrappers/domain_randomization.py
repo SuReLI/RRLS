@@ -47,7 +47,7 @@ class DomainRandomization(gym.Wrapper):
         self.draw_params = randomize_fn
         self.params = self.randomize_fn(self.params_bound)
 
-    def reset(self):
+    def reset(self, *, seed: int | None = None, options: dict | None = None):
         """
         Resets the environment and draws a new set of parameters.
 
@@ -55,8 +55,8 @@ class DomainRandomization(gym.Wrapper):
             obj: The initial observation from the environment.
         """
         self.params = self.randomize_fn(self.params_bound)
-        self.env.unwrapped.set_params(**self.params)
-        return self.env.reset()
+        self.env.set_params(**self.params)
+        return self.env.reset(seed=seed, options=options)
 
     def step(self, action):
         """
@@ -78,3 +78,10 @@ class DomainRandomization(gym.Wrapper):
         params_draw = np.random.uniform(low, high)
         new_params = dict(zip(parameters_space.keys(), params_draw))
         return new_params
+
+    def set_params(self, **params):
+        self.params = params
+        self.env.set_params(**params)
+
+    def get_params(self):
+        return self.params
