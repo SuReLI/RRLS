@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from .ant import AntParamsBound, RobustAnt
-from .half_cheetah import HalfCheetahParamsBound, RobustHalfCheetah
-from .hopper import HopperParamsBound, RobustHopper
-from .humanoid import HumanoidStandupParamsBound, RobustHumanoidStandUp
-from .pendulum import InvertedPendulumParamsBound, RobustInvertedPendulum
-from .walker import RobustWalker2d, Walker2dParamsBound
+from .ant import AntParamsBound, RobustAnt, ForceAnt
+from .half_cheetah import HalfCheetahParamsBound, RobustHalfCheetah, ForceHalfCheetah
+from .hopper import HopperParamsBound, RobustHopper, ForceHopper
+from .humanoid import HumanoidStandupParamsBound, RobustHumanoidStandUp, ForceHumanoidStandUp
+from .pendulum import InvertedPendulumParamsBound, RobustInvertedPendulum, ForceInvertedPendulum
+from .walker import RobustWalker2d, Walker2dParamsBound, ForceWalker2d
 
 __all__ = [
     "AntParamsBound",
@@ -20,4 +20,10 @@ __all__ = [
     "RobustHumanoidStandUp",
     "RobustInvertedPendulum",
     "RobustWalker2d",
+    "ForceAnt",
+    "ForceHalfCheetah",
+    "ForceHopper",
+    "ForceHumanoidStandUp",
+    "ForceInvertedPendulum",
+    "ForceWalker2d",
 ]
