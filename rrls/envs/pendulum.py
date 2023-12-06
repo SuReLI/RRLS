@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from typing import Any
 from enum import Enum
 
 import gymnasium as gym
@@ -33,8 +34,8 @@ class RobustInvertedPendulum(Wrapper):
         ],
     }
 
-    def __init__(self, polemass: float | None = None, cartmass: float | None = None):
-        super().__init__(env=gym.make("InvertedPendulum-v5"))
+    def __init__(self, polemass: float | None = None, cartmass: float | None = None, **kwargs: dict[str, Any]):
+        super().__init__(env=gym.make("InvertedPendulum-v5", **kwargs))
         self.set_params(polemass=polemass, cartmass=cartmass)
 
     def set_params(self, polemass: float | None = None, cartmass: float | None = None):

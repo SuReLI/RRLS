@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from typing import Any
 from enum import Enum
 
 import gymnasium as gym
@@ -54,8 +55,9 @@ class RobustWalker2d(Wrapper):
         leftthighmass: float | None = None,
         leftlegmass: float | None = None,
         leftfootmass: float | None = None,
+        **kwargs: dict[str, Any],
     ):
-        super().__init__(env=gym.make("Walker2d-v5"))
+        super().__init__(env=gym.make("Walker2d-v5", **kwargs))
         self.set_params(
             worldfriction=worldfriction,
             torsomass=torsomass,

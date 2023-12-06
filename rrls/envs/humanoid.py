@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from typing import Any
 from enum import Enum
 
 import gymnasium as gym
@@ -64,8 +65,9 @@ class RobustHumanoidStandUp(Wrapper):
         rightlowerarmmass: float | None = None,
         leftupperarmmass: float | None = None,
         leftlowerarmmass: float | None = None,
+        **kwargs: dict[str, Any],
     ):
-        super().__init__(env=gym.make("HumanoidStandup-v5"))
+        super().__init__(env=gym.make("HumanoidStandup-v5", **kwargs))
 
         self.set_params(
             torsomass=torsomass,

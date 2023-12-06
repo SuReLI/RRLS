@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from typing import Any
 from enum import Enum
 
 import gymnasium as gym
@@ -56,8 +57,9 @@ class RobustHalfCheetah(Wrapper):
         forwardthighmass: float | None = None,
         forwardshinmass: float | None = None,
         forwardfootmass: float | None = None,
+        **kwargs: dict[str, Any],
     ):
-        super().__init__(env=gym.make("HalfCheetah-v5"))
+        super().__init__(env=gym.make("HalfCheetah-v5", **kwargs))
 
         self.set_params(
             worldfriction=worldfriction,
