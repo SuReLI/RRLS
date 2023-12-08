@@ -32,6 +32,11 @@ bounds = [
     rrls.envs.HumanoidStandupParamsBound.THREE_DIM.value,
     rrls.envs.Walker2dParamsBound.THREE_DIM.value,
     rrls.envs.AntParamsBound.RARL.value,
+    rrls.envs.HalfCheetahParamsBound.RARL.value,
+    rrls.envs.HopperParamsBound.RARL.value,
+    rrls.envs.InvertedPendulumParamsBound.RARL.value,
+    rrls.envs.HumanoidStandupParamsBound.RARL.value,
+    rrls.envs.Walker2dParamsBound.RARL.value,
 ]
 
 envs_and_bounds = zip(envs, bounds)
