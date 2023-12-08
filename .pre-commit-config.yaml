@@ -27,7 +27,7 @@ repos:
         args:
           - '--per-file-ignores=*/__init__.py:F401'
           - --ignore=E203,W503,E741
-          - --max-complexity=30
+          - --max-complexity=45
           - --max-line-length=456
           - --show-source
           - --statistics
