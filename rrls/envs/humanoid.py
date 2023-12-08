@@ -198,7 +198,7 @@ class RobustHumanoidStandUp(Wrapper):
 
 class ForceHumanoidStandUp(Wrapper):
     """
-    Force HUmanoidStandUp environment. You can apply forces to the environment using the set_params method.
+    Force HumanoidStandUp environment. You can apply forces to the environment using the set_params method.
     The parameters are changed by calling the change_params method. The parameters are:
     - torsoforce_x
     - torsoforce_y
