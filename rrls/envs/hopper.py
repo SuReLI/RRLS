@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
 from enum import Enum
+from typing import Any
 
 import gymnasium as gym
 from gymnasium import Wrapper
@@ -164,7 +164,6 @@ class ForceHopper(Wrapper):
         footforce_y: float | None = None,
         footforce_z: float | None = None,
     ):
-
         self.torsoforce_x = torsoforce_x
         self.torsoforce_y = torsoforce_y
         self.torsoforce_z = torsoforce_z
@@ -194,7 +193,7 @@ class ForceHopper(Wrapper):
             "footforce_y": self.footforce_y,
             "footforce_z": self.footforce_z,
         }
-    
+
     def _change_params(self):
         if self.torsoforce_x is not None:
             self.unwrapped.data.xfrc_applied[1, 0] = self.torsoforce_x

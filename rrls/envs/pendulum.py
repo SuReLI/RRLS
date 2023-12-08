@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
 from enum import Enum
+from typing import Any
 
 import gymnasium as gym
 from gymnasium import Wrapper
@@ -38,7 +38,12 @@ class RobustInvertedPendulum(Wrapper):
         ],
     }
 
-    def __init__(self, polemass: float | None = None, cartmass: float | None = None, **kwargs: dict[str, Any]):
+    def __init__(
+        self,
+        polemass: float | None = None,
+        cartmass: float | None = None,
+        **kwargs: dict[str, Any],
+    ):
         super().__init__(env=gym.make("InvertedPendulum-v5", **kwargs))
         self.set_params(polemass=polemass, cartmass=cartmass)
 
@@ -71,6 +76,7 @@ class RobustInvertedPendulum(Wrapper):
         if self.polemass is not None:
             self.unwrapped.model.body_mass[2] = self.polemass
 
+
 class ForceInvertedPendulum(Wrapper):
     """
     Force InvertedPendulum environment. You can apply forces to the environment using the set_params method.
@@ -78,6 +84,7 @@ class ForceInvertedPendulum(Wrapper):
         - poleforce
         - cartforce
     """
+
     metadata = {
         "render_modes": [
             "human",
@@ -91,13 +98,14 @@ class ForceInvertedPendulum(Wrapper):
         self.set_params()
 
     def set_params(
-            self,
-            poleforce_x: float | None = None,
-            poleforce_y: float | None = None,
-            poleforce_z: float | None = None, 
-            cartforce_x: float | None = None,
-            cartforce_y: float | None = None,
-            cartforce_z: float | None = None):
+        self,
+        poleforce_x: float | None = None,
+        poleforce_y: float | None = None,
+        poleforce_z: float | None = None,
+        cartforce_x: float | None = None,
+        cartforce_y: float | None = None,
+        cartforce_z: float | None = None,
+    ):
         self.poleforce_x = poleforce_x
         self.poleforce_y = poleforce_y
         self.poleforce_z = poleforce_z
@@ -115,21 +123,21 @@ class ForceInvertedPendulum(Wrapper):
             "cartforce_y": self.cartforce_y,
             "cartforce_z": self.cartforce_z,
         }
-    
+
     def _change_params(self):
         if self.cartforce_x is not None:
-            self.unwrapped.data.xfrc_applied[1,0] = self.cartforce_x
+            self.unwrapped.data.xfrc_applied[1, 0] = self.cartforce_x
         if self.cartforce_y is not None:
-            self.unwrapped.data.xfrc_applied[1,1] = self.cartforce_y
+            self.unwrapped.data.xfrc_applied[1, 1] = self.cartforce_y
         if self.cartforce_z is not None:
-            self.unwrapped.data.xfrc_applied[1,2] = self.cartforce_z
+            self.unwrapped.data.xfrc_applied[1, 2] = self.cartforce_z
         if self.poleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[2,0] = self.poleforce_x
+            self.unwrapped.data.xfrc_applied[2, 0] = self.poleforce_x
         if self.poleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[2,1] = self.poleforce_y
+            self.unwrapped.data.xfrc_applied[2, 1] = self.poleforce_y
         if self.poleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[2,2] = self.poleforce_z    
-                
+            self.unwrapped.data.xfrc_applied[2, 2] = self.poleforce_z
+
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
             self.set_params(**options)

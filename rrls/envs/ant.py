@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
 from enum import Enum
+from typing import Any
 
 import gymnasium as gym
 from gymnasium import Wrapper
@@ -240,6 +240,7 @@ class ForceAnt(Wrapper):
         - backrightlegankleforce_y
         - backrightlegankleforce_z
     """
+
     # HACK: This is a hack to avoid the following error:
     # gymnasium.error.InvalidMetadata: Expect the environment metadata to be dict, actual type: <class 'module'>
     metadata = {
@@ -285,7 +286,7 @@ class ForceAnt(Wrapper):
         backleftlegauxforce_z: float | None = None,
         backleftlegankleforce_x: float | None = None,
         backleftlegankleforce_y: float | None = None,
-        backleftlegankleforce_z: float | None = None,   
+        backleftlegankleforce_z: float | None = None,
         backrightlegforce_x: float | None = None,
         backrightlegforce_y: float | None = None,
         backrightlegforce_z: float | None = None,
@@ -296,7 +297,6 @@ class ForceAnt(Wrapper):
         backrightlegankleforce_y: float | None = None,
         backrightlegankleforce_z: float | None = None,
     ):
-        
         self.torsoforce_x = torsoforce_x
         self.torsoforce_y = torsoforce_y
         self.torsoforce_z = torsoforce_z
@@ -337,7 +337,7 @@ class ForceAnt(Wrapper):
         self.backrightlegankleforce_y = backrightlegankleforce_y
         self.backrightlegankleforce_z = backrightlegankleforce_z
         self._change_params()
-        
+
     def get_params(self):
         return {
             "torsoforce_x": self.torsoforce_x,
@@ -383,121 +383,121 @@ class ForceAnt(Wrapper):
 
     def _change_params(self):
         if self.torsoforce_x is not None:
-            self.unwrapped.data.xfrc_applied[1,0] = self.torsoforce_x
+            self.unwrapped.data.xfrc_applied[1, 0] = self.torsoforce_x
 
         if self.torsoforce_y is not None:
-            self.unwrapped.data.xfrc_applied[1,1] = self.torsoforce_y
+            self.unwrapped.data.xfrc_applied[1, 1] = self.torsoforce_y
 
         if self.torsoforce_z is not None:
-            self.unwrapped.data.xfrc_applied[1,2] = self.torsoforce_z
+            self.unwrapped.data.xfrc_applied[1, 2] = self.torsoforce_z
 
         if self.frontleftlegforce_x is not None:
-            self.unwrapped.data.xfrc_applied[2,0] = self.frontleftlegforce_x
+            self.unwrapped.data.xfrc_applied[2, 0] = self.frontleftlegforce_x
 
         if self.frontleftlegforce_y is not None:
-            self.unwrapped.data.xfrc_applied[2,1] = self.frontleftlegforce_y
+            self.unwrapped.data.xfrc_applied[2, 1] = self.frontleftlegforce_y
 
         if self.frontleftlegforce_z is not None:
-            self.unwrapped.data.xfrc_applied[2,2] = self.frontleftlegforce_z
+            self.unwrapped.data.xfrc_applied[2, 2] = self.frontleftlegforce_z
 
         if self.frontleftlegauxforce_x is not None:
-            self.unwrapped.data.xfrc_applied[3,0] = self.frontleftlegauxforce_x
+            self.unwrapped.data.xfrc_applied[3, 0] = self.frontleftlegauxforce_x
 
         if self.frontleftlegauxforce_y is not None:
-            self.unwrapped.data.xfrc_applied[3,1] = self.frontleftlegauxforce_y
+            self.unwrapped.data.xfrc_applied[3, 1] = self.frontleftlegauxforce_y
 
         if self.frontleftlegauxforce_z is not None:
-            self.unwrapped.data.xfrc_applied[3,2] = self.frontleftlegauxforce_z
+            self.unwrapped.data.xfrc_applied[3, 2] = self.frontleftlegauxforce_z
 
         if self.frontleftlegankleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[4,0] = self.frontleftlegankleforce_x
+            self.unwrapped.data.xfrc_applied[4, 0] = self.frontleftlegankleforce_x
 
         if self.frontleftlegankleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[4,1] = self.frontleftlegankleforce_y
+            self.unwrapped.data.xfrc_applied[4, 1] = self.frontleftlegankleforce_y
 
         if self.frontleftlegankleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[4,2] = self.frontleftlegankleforce_z
+            self.unwrapped.data.xfrc_applied[4, 2] = self.frontleftlegankleforce_z
 
         if self.frontrightlegforce_x is not None:
-            self.unwrapped.data.xfrc_applied[5,0] = self.frontrightlegforce_x
+            self.unwrapped.data.xfrc_applied[5, 0] = self.frontrightlegforce_x
 
         if self.frontrightlegforce_y is not None:
-            self.unwrapped.data.xfrc_applied[5,1] = self.frontrightlegforce_y
+            self.unwrapped.data.xfrc_applied[5, 1] = self.frontrightlegforce_y
 
         if self.frontrightlegforce_z is not None:
-            self.unwrapped.data.xfrc_applied[5,2] = self.frontrightlegforce_z
+            self.unwrapped.data.xfrc_applied[5, 2] = self.frontrightlegforce_z
 
         if self.frontrightlegauxforce_x is not None:
-            self.unwrapped.data.xfrc_applied[6,0] = self.frontrightlegauxforce_x
+            self.unwrapped.data.xfrc_applied[6, 0] = self.frontrightlegauxforce_x
 
         if self.frontrightlegauxforce_y is not None:
-            self.unwrapped.data.xfrc_applied[6,1] = self.frontrightlegauxforce_y
+            self.unwrapped.data.xfrc_applied[6, 1] = self.frontrightlegauxforce_y
 
         if self.frontrightlegauxforce_z is not None:
-            self.unwrapped.data.xfrc_applied[6,2] = self.frontrightlegauxforce_z
+            self.unwrapped.data.xfrc_applied[6, 2] = self.frontrightlegauxforce_z
 
         if self.frontrightlegankleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[7,0] = self.frontrightlegankleforce_x
+            self.unwrapped.data.xfrc_applied[7, 0] = self.frontrightlegankleforce_x
 
         if self.frontrightlegankleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[7,1] = self.frontrightlegankleforce_y
+            self.unwrapped.data.xfrc_applied[7, 1] = self.frontrightlegankleforce_y
 
         if self.frontrightlegankleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[7,2] = self.frontrightlegankleforce_z
+            self.unwrapped.data.xfrc_applied[7, 2] = self.frontrightlegankleforce_z
 
         if self.backleftlegforce_x is not None:
-            self.unwrapped.data.xfrc_applied[8,0] = self.backleftlegforce_x
+            self.unwrapped.data.xfrc_applied[8, 0] = self.backleftlegforce_x
 
         if self.backleftlegforce_y is not None:
-            self.unwrapped.data.xfrc_applied[8,1] = self.backleftlegforce_y
+            self.unwrapped.data.xfrc_applied[8, 1] = self.backleftlegforce_y
 
         if self.backleftlegforce_z is not None:
-            self.unwrapped.data.xfrc_applied[8,2] = self.backleftlegforce_z
+            self.unwrapped.data.xfrc_applied[8, 2] = self.backleftlegforce_z
 
         if self.backleftlegauxforce_x is not None:
-            self.unwrapped.data.xfrc_applied[9,0] = self.backleftlegauxforce_x
+            self.unwrapped.data.xfrc_applied[9, 0] = self.backleftlegauxforce_x
 
         if self.backleftlegauxforce_y is not None:
-            self.unwrapped.data.xfrc_applied[9,1] = self.backleftlegauxforce_y
+            self.unwrapped.data.xfrc_applied[9, 1] = self.backleftlegauxforce_y
 
         if self.backleftlegauxforce_z is not None:
-            self.unwrapped.data.xfrc_applied[9,2] = self.backleftlegauxforce_z
+            self.unwrapped.data.xfrc_applied[9, 2] = self.backleftlegauxforce_z
 
         if self.backleftlegankleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[10,0] = self.backleftlegankleforce_x
+            self.unwrapped.data.xfrc_applied[10, 0] = self.backleftlegankleforce_x
 
         if self.backleftlegankleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[10,1] = self.backleftlegankleforce_y
+            self.unwrapped.data.xfrc_applied[10, 1] = self.backleftlegankleforce_y
 
         if self.backleftlegankleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[10,2] = self.backleftlegankleforce_z
+            self.unwrapped.data.xfrc_applied[10, 2] = self.backleftlegankleforce_z
 
         if self.backrightlegforce_x is not None:
-            self.unwrapped.data.xfrc_applied[11,0] = self.backrightlegforce_x
+            self.unwrapped.data.xfrc_applied[11, 0] = self.backrightlegforce_x
 
         if self.backrightlegforce_y is not None:
-            self.unwrapped.data.xfrc_applied[11,1] = self.backrightlegforce_y
+            self.unwrapped.data.xfrc_applied[11, 1] = self.backrightlegforce_y
 
         if self.backrightlegforce_z is not None:
-            self.unwrapped.data.xfrc_applied[11,2] = self.backrightlegforce_z
+            self.unwrapped.data.xfrc_applied[11, 2] = self.backrightlegforce_z
 
         if self.backrightlegauxforce_x is not None:
-            self.unwrapped.data.xfrc_applied[12,0] = self.backrightlegauxforce_x
+            self.unwrapped.data.xfrc_applied[12, 0] = self.backrightlegauxforce_x
 
         if self.backrightlegauxforce_y is not None:
-            self.unwrapped.data.xfrc_applied[12,1] = self.backrightlegauxforce_y
+            self.unwrapped.data.xfrc_applied[12, 1] = self.backrightlegauxforce_y
 
         if self.backrightlegauxforce_z is not None:
-            self.unwrapped.data.xfrc_applied[12,2] = self.backrightlegauxforce_z
+            self.unwrapped.data.xfrc_applied[12, 2] = self.backrightlegauxforce_z
 
         if self.backrightlegankleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[13,0] = self.backrightlegankleforce_x
+            self.unwrapped.data.xfrc_applied[13, 0] = self.backrightlegankleforce_x
 
         if self.backrightlegankleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[13,1] = self.backrightlegankleforce_y
-            
+            self.unwrapped.data.xfrc_applied[13, 1] = self.backrightlegankleforce_y
+
         if self.backrightlegankleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[13,2] = self.backrightlegankleforce_z
+            self.unwrapped.data.xfrc_applied[13, 2] = self.backrightlegankleforce_z
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
 from enum import Enum
+from typing import Any
 
 import gymnasium as gym
 from gymnasium import Wrapper
@@ -195,6 +195,7 @@ class RobustHumanoidStandUp(Wrapper):
         if self.leftlowerarmmass is not None:
             self.unwrapped.model.body_mass[13] = self.leftlowerarmmass
 
+
 class ForceHumanoidStandUp(Wrapper):
     """
     Force HUmanoidStandUp environment. You can apply forces to the environment using the set_params method.
@@ -253,89 +254,88 @@ class ForceHumanoidStandUp(Wrapper):
         self.set_params()
 
     def set_params(
-            self, 
-            torsoforce_x: float | None = None,
-            torsoforce_y: float | None = None,
-            torsoforce_z: float | None = None,
-            lwaisforce_x: float | None = None,
-            lwaisforce_y: float | None = None,
-            lwaisforce_z: float | None = None,
-            pelvisforce_x: float | None = None,
-            pelvisforce_y: float | None = None,
-            pelvisforce_z: float | None = None,
-            rightthighforce_x: float | None = None,
-            rightthighforce_y: float | None = None,
-            rightthighforce_z: float | None = None,
-            rightshinforce_x: float | None = None,
-            rightshinforce_y: float | None = None,
-            rightshinforce_z: float | None = None,
-            rightfootforce_x: float | None = None,
-            rightfootforce_y: float | None = None,
-            rightfootforce_z: float | None = None,
-            leftthighforce_x: float | None = None,
-            leftthighforce_y: float | None = None,
-            leftthighforce_z: float | None = None,
-            leftshinforce_x: float | None = None,
-            leftshinforce_y: float | None = None,
-            leftshinforce_z: float | None = None,
-            leftfootforce_x: float | None = None,
-            leftfootforce_y: float | None = None,
-            leftfootforce_z: float | None = None,
-            rightupperarmforce_x: float | None = None,
-            rightupperarmforce_y: float | None = None,
-            rightupperarmforce_z: float | None = None,
-            rightlowerarmforce_x: float | None = None,
-            rightlowerarmforce_y: float | None = None,
-            rightlowerarmforce_z: float | None = None,
-            leftupperarmforce_x: float | None = None,
-            leftupperarmforce_y: float | None = None,
-            leftupperarmforce_z: float | None = None,
-            leftlowerarmforce_x: float | None = None,
-            leftlowerarmforce_y: float | None = None,
-            leftlowerarmforce_z: float | None = None,
-        ):
+        self,
+        torsoforce_x: float | None = None,
+        torsoforce_y: float | None = None,
+        torsoforce_z: float | None = None,
+        lwaisforce_x: float | None = None,
+        lwaisforce_y: float | None = None,
+        lwaisforce_z: float | None = None,
+        pelvisforce_x: float | None = None,
+        pelvisforce_y: float | None = None,
+        pelvisforce_z: float | None = None,
+        rightthighforce_x: float | None = None,
+        rightthighforce_y: float | None = None,
+        rightthighforce_z: float | None = None,
+        rightshinforce_x: float | None = None,
+        rightshinforce_y: float | None = None,
+        rightshinforce_z: float | None = None,
+        rightfootforce_x: float | None = None,
+        rightfootforce_y: float | None = None,
+        rightfootforce_z: float | None = None,
+        leftthighforce_x: float | None = None,
+        leftthighforce_y: float | None = None,
+        leftthighforce_z: float | None = None,
+        leftshinforce_x: float | None = None,
+        leftshinforce_y: float | None = None,
+        leftshinforce_z: float | None = None,
+        leftfootforce_x: float | None = None,
+        leftfootforce_y: float | None = None,
+        leftfootforce_z: float | None = None,
+        rightupperarmforce_x: float | None = None,
+        rightupperarmforce_y: float | None = None,
+        rightupperarmforce_z: float | None = None,
+        rightlowerarmforce_x: float | None = None,
+        rightlowerarmforce_y: float | None = None,
+        rightlowerarmforce_z: float | None = None,
+        leftupperarmforce_x: float | None = None,
+        leftupperarmforce_y: float | None = None,
+        leftupperarmforce_z: float | None = None,
+        leftlowerarmforce_x: float | None = None,
+        leftlowerarmforce_y: float | None = None,
+        leftlowerarmforce_z: float | None = None,
+    ):
+        self.torsoforce_x = torsoforce_x
+        self.torsoforce_y = torsoforce_y
+        self.torsoforce_z = torsoforce_z
+        self.lwaisforce_x = lwaisforce_x
+        self.lwaisforce_y = lwaisforce_y
+        self.lwaisforce_z = lwaisforce_z
+        self.pelvisforce_x = pelvisforce_x
+        self.pelvisforce_y = pelvisforce_y
+        self.pelvisforce_z = pelvisforce_z
+        self.rightthighforce_x = rightthighforce_x
+        self.rightthighforce_y = rightthighforce_y
+        self.rightthighforce_z = rightthighforce_z
+        self.rightshinforce_x = rightshinforce_x
+        self.rightshinforce_y = rightshinforce_y
+        self.rightshinforce_z = rightshinforce_z
+        self.rightfootforce_x = rightfootforce_x
+        self.rightfootforce_y = rightfootforce_y
+        self.rightfootforce_z = rightfootforce_z
+        self.leftthighforce_x = leftthighforce_x
+        self.leftthighforce_y = leftthighforce_y
+        self.leftthighforce_z = leftthighforce_z
+        self.leftshinforce_x = leftshinforce_x
+        self.leftshinforce_y = leftshinforce_y
+        self.leftshinforce_z = leftshinforce_z
+        self.leftfootforce_x = leftfootforce_x
+        self.leftfootforce_y = leftfootforce_y
+        self.leftfootforce_z = leftfootforce_z
+        self.rightupperarmforce_x = rightupperarmforce_x
+        self.rightupperarmforce_y = rightupperarmforce_y
+        self.rightupperarmforce_z = rightupperarmforce_z
+        self.rightlowerarmforce_x = rightlowerarmforce_x
+        self.rightlowerarmforce_y = rightlowerarmforce_y
+        self.rightlowerarmforce_z = rightlowerarmforce_z
+        self.leftupperarmforce_x = leftupperarmforce_x
+        self.leftupperarmforce_y = leftupperarmforce_y
+        self.leftupperarmforce_z = leftupperarmforce_z
+        self.leftlowerarmforce_x = leftlowerarmforce_x
+        self.leftlowerarmforce_y = leftlowerarmforce_y
+        self.leftlowerarmforce_z = leftlowerarmforce_z
+        self._change_params()
 
-            self.torsoforce_x = torsoforce_x
-            self.torsoforce_y = torsoforce_y
-            self.torsoforce_z = torsoforce_z
-            self.lwaisforce_x = lwaisforce_x
-            self.lwaisforce_y = lwaisforce_y
-            self.lwaisforce_z = lwaisforce_z
-            self.pelvisforce_x = pelvisforce_x
-            self.pelvisforce_y = pelvisforce_y
-            self.pelvisforce_z = pelvisforce_z
-            self.rightthighforce_x = rightthighforce_x
-            self.rightthighforce_y = rightthighforce_y
-            self.rightthighforce_z = rightthighforce_z
-            self.rightshinforce_x = rightshinforce_x
-            self.rightshinforce_y = rightshinforce_y
-            self.rightshinforce_z = rightshinforce_z
-            self.rightfootforce_x = rightfootforce_x
-            self.rightfootforce_y = rightfootforce_y
-            self.rightfootforce_z = rightfootforce_z
-            self.leftthighforce_x = leftthighforce_x
-            self.leftthighforce_y = leftthighforce_y
-            self.leftthighforce_z = leftthighforce_z
-            self.leftshinforce_x = leftshinforce_x
-            self.leftshinforce_y = leftshinforce_y
-            self.leftshinforce_z = leftshinforce_z
-            self.leftfootforce_x = leftfootforce_x
-            self.leftfootforce_y = leftfootforce_y
-            self.leftfootforce_z = leftfootforce_z
-            self.rightupperarmforce_x = rightupperarmforce_x
-            self.rightupperarmforce_y = rightupperarmforce_y
-            self.rightupperarmforce_z = rightupperarmforce_z
-            self.rightlowerarmforce_x = rightlowerarmforce_x
-            self.rightlowerarmforce_y = rightlowerarmforce_y
-            self.rightlowerarmforce_z = rightlowerarmforce_z
-            self.leftupperarmforce_x = leftupperarmforce_x
-            self.leftupperarmforce_y = leftupperarmforce_y
-            self.leftupperarmforce_z = leftupperarmforce_z
-            self.leftlowerarmforce_x = leftlowerarmforce_x
-            self.leftlowerarmforce_y = leftlowerarmforce_y
-            self.leftlowerarmforce_z = leftlowerarmforce_z
-            self._change_params()        
-        
     def get_params(self):
         return {
             "torsoforce_x": self.torsoforce_x,
@@ -429,9 +429,9 @@ class ForceHumanoidStandUp(Wrapper):
             self.unwrapped.data.xfrc_applied[6][0] = self.rightfootforce_x
 
         if self.rightfootforce_y is not None:
-            self.unwrapped.data.xfrc_applied[6][1] = self.rightfootforce_y  
+            self.unwrapped.data.xfrc_applied[6][1] = self.rightfootforce_y
 
-        if self.rightfootforce_z is not None:   
+        if self.rightfootforce_z is not None:
             self.unwrapped.data.xfrc_applied[6][2] = self.rightfootforce_z
 
         if self.leftthighforce_x is not None:

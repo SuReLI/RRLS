@@ -93,8 +93,6 @@ def register_robotics_envs():
         order_enforce=False,
         disable_env_checker=True,
     )
-    
-
 
     # Advserarial environments
     # HalfCheetah
@@ -165,7 +163,8 @@ def register_robotics_envs():
             "params_bound": envs.AntParamsBound.ONE_DIM.value,
         },
     )
-    register(id="rrls/robust-ant-adversarial-forces-v0",
+    register(
+        id="rrls/robust-ant-adversarial-forces-v0",
         entry_point=make_wrapped_env,  # type: ignore
         order_enforce=False,
         disable_env_checker=True,
@@ -175,7 +174,8 @@ def register_robotics_envs():
             "params_bound": envs.AntParamsBound.RARL.value,
         },
     )
-    register(id="rrls/robust-halfcheetah-adversarial-forces-v0",
+    register(
+        id="rrls/robust-halfcheetah-adversarial-forces-v0",
         entry_point=make_wrapped_env,  # type: ignore
         order_enforce=False,
         disable_env_checker=True,
@@ -185,7 +185,8 @@ def register_robotics_envs():
             "params_bound": envs.HalfCheetahParamsBound.RARL.value,
         },
     )
-    register(id="rrls/robust-hopper-adversarial-forces-v0",
+    register(
+        id="rrls/robust-hopper-adversarial-forces-v0",
         entry_point=make_wrapped_env,  # type: ignore
         order_enforce=False,
         disable_env_checker=True,
@@ -195,7 +196,8 @@ def register_robotics_envs():
             "params_bound": envs.HopperParamsBound.RARL.value,
         },
     )
-    register(id="rrls/robust-humanoidstandup-adversarial-forces-v0",
+    register(
+        id="rrls/robust-humanoidstandup-adversarial-forces-v0",
         entry_point=make_wrapped_env,  # type: ignore
         order_enforce=False,
         disable_env_checker=True,
@@ -205,7 +207,8 @@ def register_robotics_envs():
             "params_bound": envs.HumanoidStandupParamsBound.RARL.value,
         },
     )
-    register(id="rrls/robust-invertedpendulum-adversarial-forces-v0",
+    register(
+        id="rrls/robust-invertedpendulum-adversarial-forces-v0",
         entry_point=make_wrapped_env,  # type: ignore
         order_enforce=False,
         disable_env_checker=True,
@@ -215,11 +218,12 @@ def register_robotics_envs():
             "params_bound": envs.InvertedPendulumParamsBound.RARL.value,
         },
     )
-    register(id="rrls/robust-walker-adversarial-forces-v0",
+    register(
+        id="rrls/robust-walker-adversarial-forces-v0",
         entry_point=make_wrapped_env,  # type: ignore
         order_enforce=False,
         disable_env_checker=True,
-        kwargs={ 
+        kwargs={
             "cls_env": envs.ForceWalker2d,
             "wrapper": wrappers.DynamicAdversarial,
             "params_bound": envs.Walker2dParamsBound.RARL.value,

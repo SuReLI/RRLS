@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
 from enum import Enum
+from typing import Any
 
 import gymnasium as gym
 from gymnasium import Wrapper
@@ -26,7 +26,6 @@ class Walker2dParamsBound(Enum):
         "leftfootforce_x": [-3.0, 3.0],
         "leftfootforce_y": [-3.0, 3.0],
     }
-
 
 
 class RobustWalker2d(Wrapper):
@@ -146,6 +145,7 @@ class RobustWalker2d(Wrapper):
 
         if self.leftfootmass is not None:
             self.unwrapped.model.body_mass[7] = self.leftfootmass
+
 
 class ForceWalker2d(Wrapper):
     """
@@ -332,4 +332,4 @@ class ForceWalker2d(Wrapper):
     def step(self, action):
         obs, reward, terminated, truncated, info = self.env.step(action)
         info.update(self.get_params())
-        return obs, reward, terminated, truncated, info   
+        return obs, reward, terminated, truncated, info

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
 from enum import Enum
+from typing import Any
 
 import gymnasium as gym
 from gymnasium import Wrapper
@@ -30,6 +30,7 @@ class HalfCheetahParamsBound(Enum):
         "forwardfootforce_x": [-3.0, 3.0],
         "forwardfootforce_y": [-3.0, 3.0],
     }
+
 
 class RobustHalfCheetah(Wrapper):
     """
@@ -143,6 +144,7 @@ class RobustHalfCheetah(Wrapper):
         if self.forwardfootmass is not None:
             self.unwrapped.model.body_mass[7] = self.forwardfootmass
 
+
 class ForceHalfCheetah(Wrapper):
     """
     Force HalfCheetah environment. You can apply forces to the robot using the env.data.xfrc_applied
@@ -207,7 +209,6 @@ class ForceHalfCheetah(Wrapper):
         forwardfootforce_y: float | None = None,
         forwardfootforce_z: float | None = None,
     ):
-        
         self.torsoforce_x = torsoforce_x
         self.torsoforce_y = torsoforce_y
         self.torsoforce_z = torsoforce_z
@@ -311,4 +312,3 @@ class ForceHalfCheetah(Wrapper):
         obs, reward, terminated, truncated, info = self.env.step(action)
         info.update(self.get_params())
         return obs, reward, terminated, truncated, info
-
