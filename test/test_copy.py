@@ -15,6 +15,12 @@ envs = [
     gym.make("rrls/robust-invertedpendulum-v0"),
     gym.make("rrls/robust-humanoidstandup-v0"),
     gym.make("rrls/robust-walker-v0"),
+    gym.make("rrls/force-ant-v0"),
+    gym.make("rrls/force-halfcheetah-v0"),
+    gym.make("rrls/force-hopper-v0"),
+    gym.make("rrls/force-invertedpendulum-v0"),
+    gym.make("rrls/force-humanoidstandup-v0"),
+    gym.make("rrls/force-walker-v0"),
 ]
 
 

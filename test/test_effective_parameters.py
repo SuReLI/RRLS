@@ -16,6 +16,12 @@ envs = [
     gym.make("rrls/robust-invertedpendulum-v0"),
     gym.make("rrls/robust-humanoidstandup-v0"),
     gym.make("rrls/robust-walker-v0"),
+    gym.make("rrls/force-ant-v0"),
+    gym.make("rrls/force-halfcheetah-v0"),
+    gym.make("rrls/force-hopper-v0"),
+    gym.make("rrls/force-invertedpendulum-v0"),
+    gym.make("rrls/force-humanoidstandup-v0"),
+    gym.make("rrls/force-walker-v0"),
 ]
 
 bounds = [
@@ -25,6 +31,12 @@ bounds = [
     rrls.envs.InvertedPendulumParamsBound.TWO_DIM.value,
     rrls.envs.HumanoidStandupParamsBound.THREE_DIM.value,
     rrls.envs.Walker2dParamsBound.THREE_DIM.value,
+    rrls.envs.AntParamsBound.RARL.value,
+    rrls.envs.HalfCheetahParamsBound.RARL.value,
+    rrls.envs.HopperParamsBound.RARL.value,
+    rrls.envs.InvertedPendulumParamsBound.RARL.value,
+    rrls.envs.HumanoidStandupParamsBound.RARL.value,
+    rrls.envs.Walker2dParamsBound.RARL.value,
 ]
 
 envs_and_bounds = zip(envs, bounds)
