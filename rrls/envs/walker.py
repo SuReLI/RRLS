@@ -21,27 +21,10 @@ class Walker2dParamsBound(Enum):
         "thighmass": [0.1, 6.0],
     }
     RARL = {
-        "torsoforce_x": [-3.0, 3.0],
-        "torsoforce_y": [-3.0, 3.0],
-        "torsoforce_z": [-3.0, 3.0],
-        "thighforce_x": [-3.0, 3.0],
-        "thighforce_y": [-3.0, 3.0],
-        "thighforce_z": [-3.0, 3.0],
         "legforce_x": [-3.0, 3.0],
         "legforce_y": [-3.0, 3.0],
-        "legforce_z": [-3.0, 3.0],
-        "footforce_x": [-3.0, 3.0],
-        "footforce_y": [-3.0, 3.0],
-        "footforce_z": [-3.0, 3.0],
-        "leftthighforce_x": [-3.0, 3.0],
-        "leftthighforce_y": [-3.0, 3.0],
-        "leftthighforce_z": [-3.0, 3.0],
-        "leftlegforce_x": [-3.0, 3.0],
-        "leftlegforce_y": [-3.0, 3.0],
-        "leftlegforce_z": [-3.0, 3.0],
         "leftfootforce_x": [-3.0, 3.0],
         "leftfootforce_y": [-3.0, 3.0],
-        "leftfootforce_z": [-3.0, 3.0],
     }
 
 

@@ -18,11 +18,6 @@ class InvertedPendulumParamsBound(Enum):
     RARL = {
         "poleforce_x": [-3.0, 3.0],
         "poleforce_y": [-3.0, 3.0],
-        "poleforce_z": [-3.0, 3.0],
-        "cartforce_x": [-3.0, 3.0],
-        "cartforce_y": [-3.0, 3.0],
-        "cartforce_z": [-3.0, 3.0],
-
     }
 
 
