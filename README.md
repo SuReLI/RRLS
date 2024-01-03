@@ -11,7 +11,23 @@ The goal of rrls is to standardize robust reinforcement learning benchmarks, ens
 
 ## 📦 Installation
 
-To install rrls:
+**From source**:
+
+```bash
+# We have to install the latest version of gymnasium
+git clone https://github.com/Farama-Foundation/Gymnasium.git
+
+cd Gymnasium
+
+pip install .
+
+pip install git+https://github.com/SuReLI/RRLS.git
+
+```
+
+**Available when Gymasium 1.0 is released**
+
+Via pip:
 
 ```bash
 pip install rrls
@@ -101,7 +117,21 @@ params_bound_2d = AntParamsBound.TWO_DIM.value
 #                min  max
 ```
 
+Also you can get the uncertainty set provided by the [RARL paper](https://arxiv.org/abs/1703.02702)
 
+```python
+from rrls.envs.ant import AntParamsBound
+rarl_params_bound = AntParamsBound.RARL.value
+# {
+#         "torsoforce_x": [-3.0, 3.0],
+#         "torsoforce_y": [-3.0, 3.0],
+#         "frontleftlegforce_x": [-3.0, 3.0],
+#         "frontleftlegforce_y": [-3.0, 3.0],
+#         "frontrightlegforce_x": [-3.0, 3.0],
+#         "frontrightlegforce_y": [-3.0, 3.0],
+#     }
+
+```
 
 ## 🤓 Evaluate
 
