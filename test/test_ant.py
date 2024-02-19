@@ -5,8 +5,6 @@ import pytest
 
 import rrls  # noqa: F401
 
-# from rrls.envs.ant import DEFAULT_PARAMS
-
 ant_env = gym.make("rrls/robust-ant-v0")
 
 
