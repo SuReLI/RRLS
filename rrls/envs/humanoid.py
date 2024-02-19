@@ -6,6 +6,22 @@ from typing import Any
 import gymnasium as gym
 from gymnasium import Wrapper
 
+DEFAULT_PARAMS = {
+    "torsomass": 8.907462370478262,
+    "lwaistmass": 2.261946710584651,
+    "pelvismass": 6.616194128460103,
+    "rightthighmass": 4.751750928806242,
+    "rightshinmass": 2.7556961671836424,
+    "rightfootmass": 1.7671458676442586,
+    "leftthighmass": 4.751750928806242,
+    "leftshinmass": 2.7556961671836424,
+    "leftfootmass": 1.7671458676442586,
+    "rightupperarmmass": 1.6610804848382084,
+    "rightlowerarmmass": 1.2295401928310803,
+    "leftupperarmmass": 1.6610804848382084,
+    "leftlowerarmmass": 1.2295401928310803,
+}
+
 
 class HumanoidStandupParamsBound(Enum):
     ONE_DIM = {

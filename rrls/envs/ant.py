@@ -6,6 +6,22 @@ from typing import Any
 import gymnasium as gym
 from gymnasium import Wrapper
 
+DEFAULT_PARAMS = {
+    "torsomass": 0.32724923474893675,
+    "frontleftlegmass": 0.03915775372846671,
+    "frontleftlegauxmass": 0.03915775372846671,
+    "frontleftleganklemass": 0.06759220453268026,
+    "frontrightlegmass": 0.03915775372846671,
+    "frontrightlegauxmass": 0.03915775372846671,
+    "frontrightleganklemass": 0.06759220453268026,
+    "backleftlegmass": 0.03915775372846671,
+    "backleftlegauxmass": 0.03915775372846671,
+    "backleftleganklemass": 0.06759220453268026,
+    "backrightlegmass": 0.03915775372846671,
+    "backrightlegauxmass": 0.03915775372846671,
+    "backrightleganklemass": 0.06759220453268026,
+}
+
 
 class AntParamsBound(Enum):
     ONE_DIM = {
@@ -111,19 +127,87 @@ class RobustAnt(Wrapper):
         backrightlegauxmass: float | None = None,
         backrightleganklemass: float | None = None,
     ):
-        self.torsomass = torsomass
-        self.frontleftlegmass = frontleftlegmass
-        self.frontleftlegauxmass = frontleftlegauxmass
-        self.frontleftleganklemass = frontleftleganklemass
-        self.frontrightlegmass = frontrightlegmass
-        self.frontrightlegauxmass = frontrightlegauxmass
-        self.frontrightleganklemass = frontrightleganklemass
-        self.backleftlegmass = backleftlegmass
-        self.backleftlegauxmass = backleftlegauxmass
-        self.backleftleganklemass = backleftleganklemass
-        self.backrightlegmass = backrightlegmass
-        self.backrightlegauxmass = backrightlegauxmass
-        self.backrightleganklemass = backrightleganklemass
+        self.torsomass = (
+            torsomass
+            if torsomass is not None
+            else getattr(self, "torsomass", DEFAULT_PARAMS["torsomass"])
+        )
+        self.frontleftlegmass = (
+            frontleftlegmass
+            if frontleftlegmass is not None
+            else getattr(self, "frontleftlegmass", DEFAULT_PARAMS["frontleftlegmass"])
+        )
+        self.frontleftlegauxmass = (
+            frontleftlegauxmass
+            if frontleftlegauxmass is not None
+            else getattr(
+                self, "frontleftlegauxmass", DEFAULT_PARAMS["frontleftlegauxmass"]
+            )
+        )
+        self.frontleftleganklemass = (
+            frontleftleganklemass
+            if frontleftleganklemass is not None
+            else getattr(
+                self, "frontleftleganklemass", DEFAULT_PARAMS["frontleftleganklemass"]
+            )
+        )
+        self.frontrightlegmass = (
+            frontrightlegmass
+            if frontrightlegmass is not None
+            else getattr(self, "frontrightlegmass", DEFAULT_PARAMS["frontrightlegmass"])
+        )
+        self.frontrightlegauxmass = (
+            frontrightlegauxmass
+            if frontrightlegauxmass is not None
+            else getattr(
+                self, "frontrightlegauxmass", DEFAULT_PARAMS["frontrightlegauxmass"]
+            )
+        )
+        self.frontrightleganklemass = (
+            frontrightleganklemass
+            if frontrightleganklemass is not None
+            else getattr(
+                self, "frontrightleganklemass", DEFAULT_PARAMS["frontrightleganklemass"]
+            )
+        )
+        self.backleftlegmass = (
+            backleftlegmass
+            if backleftlegmass is not None
+            else getattr(self, "backleftlegmass", DEFAULT_PARAMS["backleftlegmass"])
+        )
+        self.backleftlegauxmass = (
+            backleftlegauxmass
+            if backleftlegauxmass is not None
+            else getattr(
+                self, "backleftlegauxmass", DEFAULT_PARAMS["backleftlegauxmass"]
+            )
+        )
+        self.backleftleganklemass = (
+            backleftleganklemass
+            if backleftleganklemass is not None
+            else getattr(
+                self, "backleftleganklemass", DEFAULT_PARAMS["backleftleganklemass"]
+            )
+        )
+        self.backrightlegmass = (
+            backrightlegmass
+            if backrightlegmass is not None
+            else getattr(self, "backrightlegmass", DEFAULT_PARAMS["backrightlegmass"])
+        )
+        self.backrightlegauxmass = (
+            backrightlegauxmass
+            if backrightlegauxmass is not None
+            else getattr(
+                self, "backrightlegauxmass", DEFAULT_PARAMS["backrightlegauxmass"]
+            )
+        )
+        self.backrightleganklemass = (
+            backrightleganklemass
+            if backrightleganklemass is not None
+            else getattr(
+                self, "backrightleganklemass", DEFAULT_PARAMS["backrightleganklemass"]
+            )
+        )
         self._change_params()
 
     def get_params(self):

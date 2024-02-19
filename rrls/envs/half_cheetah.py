@@ -8,6 +8,17 @@ from gymnasium import Wrapper
 
 # from gymnasium.envs.mujoco.half_cheetah_v4 import HalfCheetahEnv
 
+DEFAULT_PARAMS = {
+    "worldfriction": [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4],
+    "torsomass": 6.25020920502092,
+    "backthighmass": 1.5435146443514645,
+    "backshinmass": 1.5874476987447697,
+    "backfootmass": 1.0953974895397491,
+    "forwardthighmass": 1.4380753138075317,
+    "forwardshinmass": 1.200836820083682,
+    "forwardfootmass": 0.8845188284518829,
+}
+
 
 class HalfCheetahParamsBound(Enum):
     ONE_DIM = {
@@ -93,13 +104,41 @@ class RobustHalfCheetah(Wrapper):
         forwardfootmass: float | None = None,
     ):
         self.worldfriction = worldfriction
-        self.torsomass = torsomass
-        self.backthighmass = backthighmass
-        self.backshinmass = backshinmass
-        self.backfootmass = backfootmass
-        self.forwardthighmass = forwardthighmass
-        self.forwardshinmass = forwardshinmass
-        self.forwardfootmass = forwardfootmass
+        self.torsomass = (
+            torsomass
+            if torsomass is not None
+            else getattr(self, "torsomass", DEFAULT_PARAMS["torsomass"])
+        )
+        self.backthighmass = (
+            backthighmass
+            if backthighmass is not None
+            else getattr(self, "backthighmass", DEFAULT_PARAMS["backthighmass"])
+        )
+        self.backshinmass = (
+            backshinmass
+            if backshinmass is not None
+            else getattr(self, "backshinmass", DEFAULT_PARAMS["backshinmass"])
+        )
+        self.backfootmass = (
+            backfootmass
+            if backfootmass is not None
+            else getattr(self, "backfootmass", DEFAULT_PARAMS["backfootmass"])
+        )
+        self.forwardthighmass = (
+            forwardthighmass
+            if forwardthighmass is not None
+            else getattr(self, "forwardthighmass", DEFAULT_PARAMS["forwardthighmass"])
+        )
+        self.forwardshinmass = (
+            forwardshinmass
+            if forwardshinmass is not None
+            else getattr(self, "forwardshinmass", DEFAULT_PARAMS["forwardshinmass"])
+        )
+        self.forwardfootmass = (
+            forwardfootmass
+            if forwardfootmass is not None
+            else getattr(self, "forwardfootmass", DEFAULT_PARAMS["forwardfootmass"])
+        )
         self._change_params()
 
     def get_params(self):

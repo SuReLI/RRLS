@@ -6,6 +6,17 @@ from typing import Any
 import gymnasium as gym
 from gymnasium import Wrapper
 
+DEFAULT_PARAMS = {
+    "worldfriction": 0.7,
+    "torsomass": 3.6651914291880923,
+    "thighmass": 4.057890510886818,
+    "legmass": 2.7813566959781637,
+    "footmass": 3.1667253948185117,
+    "leftthighmass": 4.057890510886818,
+    "leftlegmass": 2.7813566959781637,
+    "leftfootmass": 3.1667253948185117,
+}
+
 
 class Walker2dParamsBound(Enum):
     ONE_DIM = {

@@ -26,6 +26,15 @@ class HopperParamsBound(Enum):
     }
 
 
+DEFAULT_PARAMS = {
+    "worldfriction": 0.7,
+    "torsomass": 3.6651914291880923,
+    "thighmass": 4.057890510886818,
+    "legmass": 2.7813566959781637,
+    "footmass": 5.315574769873931,
+}
+
+
 class RobustHopper(Wrapper):
     """
     Robust Hopper environment. You can change the parameters of the environment using options in
@@ -74,11 +83,32 @@ class RobustHopper(Wrapper):
         legmass: float | None = None,
         footmass: float | None = None,
     ):
-        self.worldfriction = worldfriction
-        self.torsomass = torsomass
-        self.thighmass = thighmass
-        self.legmass = legmass
-        self.footmass = footmass
+        self.worldfriction = (
+            worldfriction
+            if worldfriction is not None
+            else getattr(self, "worldfriction", DEFAULT_PARAMS["worldfriction"])
+        )
+        self.torsomass = (
+            torsomass
+            if torsomass is not None
+            else getattr(self, "torsomass", DEFAULT_PARAMS["torsomass"])
+        )
+        self.thighmass = (
+            thighmass
+            if thighmass is not None
+            else getattr(self, "thighmass", DEFAULT_PARAMS["thighmass"])
+        )
+        self.legmass = (
+            legmass
+            if legmass is not None
+            else getattr(self, "legmass", DEFAULT_PARAMS["legmass"])
+        )
+        self.footmass = (
+            footmass
+            if footmass is not None
+            else getattr(self, "footmass", DEFAULT_PARAMS["footmass"])
+        )
+
         self._change_params()
 
     def get_params(self):

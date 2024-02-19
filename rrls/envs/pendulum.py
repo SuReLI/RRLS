@@ -6,6 +6,11 @@ from typing import Any
 import gymnasium as gym
 from gymnasium import Wrapper
 
+DEFAULT_PARAMS = {
+    "polemass": 10.47197551196598,
+    "cartmass": 5.018591641363306,
+}
+
 
 class InvertedPendulumParamsBound(Enum):
     ONE_DIM = {
