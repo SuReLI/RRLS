@@ -24,8 +24,15 @@ def test_humanoid_change_params(env):
     assert env.unwrapped.model.body_mass[7] == desired_leftthighmass
     assert env.unwrapped.model.body_mass[6] == desired_rightfootmass
 
-    assert {k: v for k, v in env.get_params().items() if v is not None} == {
+    expected_values = {
         "torsomass": desired_torsomass,
         "leftthighmass": desired_leftthighmass,
         "rightfootmass": desired_rightfootmass,
     }
+    # Filter env.get_params() to only include keys that are in expected_values and have non-None values
+    filtered_env_params = {
+        k: v
+        for k, v in env.get_params().items()
+        if k in expected_values and v is not None
+    }
+    assert filtered_env_params == expected_values

@@ -8,6 +8,17 @@ from gymnasium import Wrapper
 
 # from gymnasium.envs.mujoco.half_cheetah_v4 import HalfCheetahEnv
 
+DEFAULT_PARAMS = {
+    "worldfriction": [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4],
+    "torsomass": 6.25020920502092,
+    "backthighmass": 1.5435146443514645,
+    "backshinmass": 1.5874476987447697,
+    "backfootmass": 1.0953974895397491,
+    "forwardthighmass": 1.4380753138075317,
+    "forwardshinmass": 1.200836820083682,
+    "forwardfootmass": 0.8845188284518829,
+}
+
 
 class HalfCheetahParamsBound(Enum):
     ONE_DIM = {
@@ -47,7 +58,7 @@ class RobustHalfCheetah(Wrapper):
         - forwardfootmass
     """
 
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -67,7 +78,7 @@ class RobustHalfCheetah(Wrapper):
         forwardfootmass: float | None = None,
         **kwargs: dict[str, Any],
     ):
-        super().__init__(env=gym.make("HalfCheetah-v5", **kwargs))
+        super().__init__(env=gym.make("HalfCheetah-v5", **kwargs))  # type: ignore
 
         self.set_params(
             worldfriction=worldfriction,
@@ -93,13 +104,41 @@ class RobustHalfCheetah(Wrapper):
         forwardfootmass: float | None = None,
     ):
         self.worldfriction = worldfriction
-        self.torsomass = torsomass
-        self.backthighmass = backthighmass
-        self.backshinmass = backshinmass
-        self.backfootmass = backfootmass
-        self.forwardthighmass = forwardthighmass
-        self.forwardshinmass = forwardshinmass
-        self.forwardfootmass = forwardfootmass
+        self.torsomass = (
+            torsomass
+            if torsomass is not None
+            else getattr(self, "torsomass", DEFAULT_PARAMS["torsomass"])
+        )
+        self.backthighmass = (
+            backthighmass
+            if backthighmass is not None
+            else getattr(self, "backthighmass", DEFAULT_PARAMS["backthighmass"])
+        )
+        self.backshinmass = (
+            backshinmass
+            if backshinmass is not None
+            else getattr(self, "backshinmass", DEFAULT_PARAMS["backshinmass"])
+        )
+        self.backfootmass = (
+            backfootmass
+            if backfootmass is not None
+            else getattr(self, "backfootmass", DEFAULT_PARAMS["backfootmass"])
+        )
+        self.forwardthighmass = (
+            forwardthighmass
+            if forwardthighmass is not None
+            else getattr(self, "forwardthighmass", DEFAULT_PARAMS["forwardthighmass"])
+        )
+        self.forwardshinmass = (
+            forwardshinmass
+            if forwardshinmass is not None
+            else getattr(self, "forwardshinmass", DEFAULT_PARAMS["forwardshinmass"])
+        )
+        self.forwardfootmass = (
+            forwardfootmass
+            if forwardfootmass is not None
+            else getattr(self, "forwardfootmass", DEFAULT_PARAMS["forwardfootmass"])
+        )
         self._change_params()
 
     def get_params(self):
@@ -128,21 +167,21 @@ class RobustHalfCheetah(Wrapper):
 
     def _change_params(self):
         if self.worldfriction is not None:
-            self.unwrapped.model.geom_friction[:, 0] = self.worldfriction
+            self.unwrapped.model.geom_friction[:, 0] = self.worldfriction  # type: ignore
         if self.torsomass is not None:
-            self.unwrapped.model.body_mass[1] = self.torsomass
+            self.unwrapped.model.body_mass[1] = self.torsomass  # type: ignore
         if self.backthighmass is not None:
-            self.unwrapped.model.body_mass[2] = self.backthighmass
+            self.unwrapped.model.body_mass[2] = self.backthighmass  # type: ignore
         if self.backshinmass is not None:
-            self.unwrapped.model.body_mass[3] = self.backshinmass
+            self.unwrapped.model.body_mass[3] = self.backshinmass  # type: ignore
         if self.backfootmass is not None:
-            self.unwrapped.model.body_mass[4] = self.backfootmass
+            self.unwrapped.model.body_mass[4] = self.backfootmass  # type: ignore
         if self.forwardthighmass is not None:
-            self.unwrapped.model.body_mass[5] = self.forwardthighmass
+            self.unwrapped.model.body_mass[5] = self.forwardthighmass  # type: ignore
         if self.forwardshinmass is not None:
-            self.unwrapped.model.body_mass[6] = self.forwardshinmass
+            self.unwrapped.model.body_mass[6] = self.forwardshinmass  # type: ignore
         if self.forwardfootmass is not None:
-            self.unwrapped.model.body_mass[7] = self.forwardfootmass
+            self.unwrapped.model.body_mass[7] = self.forwardfootmass  # type: ignore
 
 
 class ForceHalfCheetah(Wrapper):
@@ -172,7 +211,7 @@ class ForceHalfCheetah(Wrapper):
         - forwardfootforce_z
     """
 
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -181,7 +220,7 @@ class ForceHalfCheetah(Wrapper):
     }
 
     def __init__(self, **kwargs: dict[str, Any]):
-        super().__init__(env=gym.make("HalfCheetah-v5", **kwargs))
+        super().__init__(env=gym.make("HalfCheetah-v5", **kwargs))  # type: ignore
         self.set_params()
         self._change_params()
 
@@ -259,47 +298,47 @@ class ForceHalfCheetah(Wrapper):
 
     def _change_params(self):
         if self.torsoforce_x is not None:
-            self.unwrapped.data.xfrc_applied[1, 0] = self.torsoforce_x
+            self.unwrapped.data.xfrc_applied[1, 0] = self.torsoforce_x  # type: ignore
         if self.torsoforce_y is not None:
-            self.unwrapped.data.xfrc_applied[1, 1] = self.torsoforce_y
+            self.unwrapped.data.xfrc_applied[1, 1] = self.torsoforce_y  # type: ignore
         if self.torsoforce_z is not None:
-            self.unwrapped.data.xfrc_applied[1, 2] = self.torsoforce_z
+            self.unwrapped.data.xfrc_applied[1, 2] = self.torsoforce_z  # type: ignore
         if self.backthighforce_x is not None:
-            self.unwrapped.data.xfrc_applied[2, 0] = self.backthighforce_x
+            self.unwrapped.data.xfrc_applied[2, 0] = self.backthighforce_x  # type: ignore
         if self.backthighforce_y is not None:
-            self.unwrapped.data.xfrc_applied[2, 1] = self.backthighforce_y
+            self.unwrapped.data.xfrc_applied[2, 1] = self.backthighforce_y  # type: ignore
         if self.backthighforce_z is not None:
-            self.unwrapped.data.xfrc_applied[2, 2] = self.backthighforce_z
+            self.unwrapped.data.xfrc_applied[2, 2] = self.backthighforce_z  # type: ignore
         if self.backshinforce_x is not None:
-            self.unwrapped.data.xfrc_applied[3, 0] = self.backshinforce_x
+            self.unwrapped.data.xfrc_applied[3, 0] = self.backshinforce_x  # type: ignore
         if self.backshinforce_y is not None:
-            self.unwrapped.data.xfrc_applied[3, 1] = self.backshinforce_y
+            self.unwrapped.data.xfrc_applied[3, 1] = self.backshinforce_y  # type: ignore
         if self.backshinforce_z is not None:
-            self.unwrapped.data.xfrc_applied[3, 2] = self.backshinforce_z
+            self.unwrapped.data.xfrc_applied[3, 2] = self.backshinforce_z  # type: ignore
         if self.backfootforce_x is not None:
-            self.unwrapped.data.xfrc_applied[4, 0] = self.backfootforce_x
+            self.unwrapped.data.xfrc_applied[4, 0] = self.backfootforce_x  # type: ignore
         if self.backfootforce_y is not None:
-            self.unwrapped.data.xfrc_applied[4, 1] = self.backfootforce_y
+            self.unwrapped.data.xfrc_applied[4, 1] = self.backfootforce_y  # type: ignore
         if self.backfootforce_z is not None:
-            self.unwrapped.data.xfrc_applied[4, 2] = self.backfootforce_z
+            self.unwrapped.data.xfrc_applied[4, 2] = self.backfootforce_z  # type: ignore
         if self.forwardthighforce_x is not None:
-            self.unwrapped.data.xfrc_applied[5, 0] = self.forwardthighforce_x
+            self.unwrapped.data.xfrc_applied[5, 0] = self.forwardthighforce_x  # type: ignore
         if self.forwardthighforce_y is not None:
-            self.unwrapped.data.xfrc_applied[5, 1] = self.forwardthighforce_y
+            self.unwrapped.data.xfrc_applied[5, 1] = self.forwardthighforce_y  # type: ignore
         if self.forwardthighforce_z is not None:
-            self.unwrapped.data.xfrc_applied[5, 2] = self.forwardthighforce_z
+            self.unwrapped.data.xfrc_applied[5, 2] = self.forwardthighforce_z  # type: ignore
         if self.forwardshinforce_x is not None:
-            self.unwrapped.data.xfrc_applied[6, 0] = self.forwardshinforce_x
+            self.unwrapped.data.xfrc_applied[6, 0] = self.forwardshinforce_x  # type: ignore
         if self.forwardshinforce_y is not None:
-            self.unwrapped.data.xfrc_applied[6, 1] = self.forwardshinforce_y
+            self.unwrapped.data.xfrc_applied[6, 1] = self.forwardshinforce_y  # type: ignore
         if self.forwardshinforce_z is not None:
-            self.unwrapped.data.xfrc_applied[6, 2] = self.forwardshinforce_z
+            self.unwrapped.data.xfrc_applied[6, 2] = self.forwardshinforce_z  # type: ignore
         if self.forwardfootforce_x is not None:
-            self.unwrapped.data.xfrc_applied[7, 0] = self.forwardfootforce_x
+            self.unwrapped.data.xfrc_applied[7, 0] = self.forwardfootforce_x  # type: ignore
         if self.forwardfootforce_y is not None:
-            self.unwrapped.data.xfrc_applied[7, 1] = self.forwardfootforce_y
+            self.unwrapped.data.xfrc_applied[7, 1] = self.forwardfootforce_y  # type: ignore
         if self.forwardfootforce_z is not None:
-            self.unwrapped.data.xfrc_applied[7, 2] = self.forwardfootforce_z
+            self.unwrapped.data.xfrc_applied[7, 2] = self.forwardfootforce_z  # type: ignore
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from enum import Enum
+from typing import Annotated
 
 import gymnasium as gym
 import numpy as np
@@ -46,7 +46,7 @@ envs_and_bounds = zip(envs, bounds)
     "env, bounds",
     zip(envs, bounds),
 )
-def test_change_params_is_effective(env, bounds: Enum):
+def test_change_params_is_effective(env, bounds: dict[str, Annotated[tuple[float], 2]]):
     action_high = env.action_space.high
     for param, interval in bounds.items():
         for value in interval:

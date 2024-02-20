@@ -26,6 +26,15 @@ class HopperParamsBound(Enum):
     }
 
 
+DEFAULT_PARAMS = {
+    "worldfriction": 0.7,
+    "torsomass": 3.6651914291880923,
+    "thighmass": 4.057890510886818,
+    "legmass": 2.7813566959781637,
+    "footmass": 5.315574769873931,
+}
+
+
 class RobustHopper(Wrapper):
     """
     Robust Hopper environment. You can change the parameters of the environment using options in
@@ -38,7 +47,7 @@ class RobustHopper(Wrapper):
         - footmass
     """
 
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -55,7 +64,7 @@ class RobustHopper(Wrapper):
         footmass: float | None = None,
         **kwargs: dict[str, Any],
     ):
-        super().__init__(env=gym.make("Hopper-v5", **kwargs))
+        super().__init__(env=gym.make("Hopper-v5", **kwargs))  # type: ignore
 
         self.set_params(
             worldfriction=worldfriction,
@@ -74,11 +83,32 @@ class RobustHopper(Wrapper):
         legmass: float | None = None,
         footmass: float | None = None,
     ):
-        self.worldfriction = worldfriction
-        self.torsomass = torsomass
-        self.thighmass = thighmass
-        self.legmass = legmass
-        self.footmass = footmass
+        self.worldfriction = (
+            worldfriction
+            if worldfriction is not None
+            else getattr(self, "worldfriction", DEFAULT_PARAMS["worldfriction"])
+        )
+        self.torsomass = (
+            torsomass
+            if torsomass is not None
+            else getattr(self, "torsomass", DEFAULT_PARAMS["torsomass"])
+        )
+        self.thighmass = (
+            thighmass
+            if thighmass is not None
+            else getattr(self, "thighmass", DEFAULT_PARAMS["thighmass"])
+        )
+        self.legmass = (
+            legmass
+            if legmass is not None
+            else getattr(self, "legmass", DEFAULT_PARAMS["legmass"])
+        )
+        self.footmass = (
+            footmass
+            if footmass is not None
+            else getattr(self, "footmass", DEFAULT_PARAMS["footmass"])
+        )
+
         self._change_params()
 
     def get_params(self):
@@ -104,19 +134,19 @@ class RobustHopper(Wrapper):
 
     def _change_params(self):
         if self.worldfriction is not None:
-            self.unwrapped.model.geom_friction[0, 0] = self.worldfriction
+            self.unwrapped.model.geom_friction[0, 0] = self.worldfriction  # type: ignore
 
         if self.torsomass is not None:
-            self.unwrapped.model.body_mass[1] = self.torsomass
+            self.unwrapped.model.body_mass[1] = self.torsomass  # type: ignore
 
         if self.thighmass is not None:
-            self.unwrapped.model.body_mass[2] = self.thighmass
+            self.unwrapped.model.body_mass[2] = self.thighmass  # type: ignore
 
         if self.legmass is not None:
-            self.unwrapped.model.body_mass[3] = self.legmass
+            self.unwrapped.model.body_mass[3] = self.legmass  # type: ignore
 
         if self.footmass is not None:
-            self.unwrapped.model.body_mass[4] = self.footmass
+            self.unwrapped.model.body_mass[4] = self.footmass  # type: ignore
 
 
 class ForceHopper(Wrapper):
@@ -137,7 +167,7 @@ class ForceHopper(Wrapper):
         - footforce_z
     """
 
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -146,7 +176,7 @@ class ForceHopper(Wrapper):
     }
 
     def __init__(self, **kwargs: dict[str, Any]):
-        super().__init__(env=gym.make("Hopper-v5", **kwargs))
+        super().__init__(env=gym.make("Hopper-v5", **kwargs))  # type: ignore
         self.set_params()
 
     def set_params(
@@ -196,40 +226,40 @@ class ForceHopper(Wrapper):
 
     def _change_params(self):
         if self.torsoforce_x is not None:
-            self.unwrapped.data.xfrc_applied[1, 0] = self.torsoforce_x
+            self.unwrapped.data.xfrc_applied[1, 0] = self.torsoforce_x  # type: ignore
 
         if self.torsoforce_y is not None:
-            self.unwrapped.data.xfrc_applied[1, 1] = self.torsoforce_y
+            self.unwrapped.data.xfrc_applied[1, 1] = self.torsoforce_y  # type: ignore
 
         if self.torsoforce_z is not None:
-            self.unwrapped.data.xfrc_applied[1, 2] = self.torsoforce_z
+            self.unwrapped.data.xfrc_applied[1, 2] = self.torsoforce_z  # type: ignore
 
         if self.thighforce_x is not None:
-            self.unwrapped.data.xfrc_applied[2, 0] = self.thighforce_x
+            self.unwrapped.data.xfrc_applied[2, 0] = self.thighforce_x  # type: ignore
 
         if self.thighforce_y is not None:
-            self.unwrapped.data.xfrc_applied[2, 1] = self.thighforce_y
+            self.unwrapped.data.xfrc_applied[2, 1] = self.thighforce_y  # type: ignore
 
         if self.thighforce_z is not None:
-            self.unwrapped.data.xfrc_applied[2, 2] = self.thighforce_z
+            self.unwrapped.data.xfrc_applied[2, 2] = self.thighforce_z  # type: ignore
 
         if self.legforce_x is not None:
-            self.unwrapped.data.xfrc_applied[3, 0] = self.legforce_x
+            self.unwrapped.data.xfrc_applied[3, 0] = self.legforce_x  # type: ignore
 
         if self.legforce_y is not None:
-            self.unwrapped.data.xfrc_applied[3, 1] = self.legforce_y
+            self.unwrapped.data.xfrc_applied[3, 1] = self.legforce_y  # type: ignore
 
         if self.legforce_z is not None:
-            self.unwrapped.data.xfrc_applied[3, 2] = self.legforce_z
+            self.unwrapped.data.xfrc_applied[3, 2] = self.legforce_z  # type: ignore
 
         if self.footforce_x is not None:
-            self.unwrapped.data.xfrc_applied[4, 0] = self.footforce_x
+            self.unwrapped.data.xfrc_applied[4, 0] = self.footforce_x  # type: ignore
 
         if self.footforce_y is not None:
-            self.unwrapped.data.xfrc_applied[4, 1] = self.footforce_y
+            self.unwrapped.data.xfrc_applied[4, 1] = self.footforce_y  # type: ignore
 
         if self.footforce_z is not None:
-            self.unwrapped.data.xfrc_applied[4, 2] = self.footforce_z
+            self.unwrapped.data.xfrc_applied[4, 2] = self.footforce_z  # type: ignore
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
