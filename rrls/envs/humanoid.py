@@ -66,7 +66,7 @@ class RobustHumanoidStandUp(Wrapper):
         - leftlowerarmmass
     """
 
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -91,7 +91,7 @@ class RobustHumanoidStandUp(Wrapper):
         leftlowerarmmass: float | None = None,
         **kwargs: dict[str, Any],
     ):
-        super().__init__(env=gym.make("HumanoidStandup-v5", **kwargs))
+        super().__init__(env=gym.make("HumanoidStandup-v5", **kwargs))  # type: ignore
 
         self.set_params(
             torsomass=torsomass,
@@ -173,43 +173,43 @@ class RobustHumanoidStandUp(Wrapper):
 
     def _change_params(self):
         if self.torsomass is not None:
-            self.unwrapped.model.body_mass[1] = self.torsomass
+            self.unwrapped.model.body_mass[1] = self.torsomass  # type: ignore
 
         if self.lwaistmass is not None:
-            self.unwrapped.model.body_mass[2] = self.lwaistmass
+            self.unwrapped.model.body_mass[2] = self.lwaistmass  # type: ignore
 
         if self.pelvismass is not None:
-            self.unwrapped.model.body_mass[3] = self.pelvismass
+            self.unwrapped.model.body_mass[3] = self.pelvismass  # type: ignore
 
         if self.rightthighmass is not None:
-            self.unwrapped.model.body_mass[4] = self.rightthighmass
+            self.unwrapped.model.body_mass[4] = self.rightthighmass  # type: ignore
 
         if self.rightshinmass is not None:
-            self.unwrapped.model.body_mass[5] = self.rightshinmass
+            self.unwrapped.model.body_mass[5] = self.rightshinmass  # type: ignore
 
         if self.rightfootmass is not None:
-            self.unwrapped.model.body_mass[6] = self.rightfootmass
+            self.unwrapped.model.body_mass[6] = self.rightfootmass  # type: ignore
 
         if self.leftthighmass is not None:
-            self.unwrapped.model.body_mass[7] = self.leftthighmass
+            self.unwrapped.model.body_mass[7] = self.leftthighmass  # type: ignore
 
         if self.leftshinmass is not None:
-            self.unwrapped.model.body_mass[8] = self.leftshinmass
+            self.unwrapped.model.body_mass[8] = self.leftshinmass  # type: ignore
 
         if self.leftfootmass is not None:
-            self.unwrapped.model.body_mass[9] = self.leftfootmass
+            self.unwrapped.model.body_mass[9] = self.leftfootmass  # type: ignore
 
         if self.rightupperarmmass is not None:
-            self.unwrapped.model.body_mass[10] = self.rightupperarmmass
+            self.unwrapped.model.body_mass[10] = self.rightupperarmmass  # type: ignore
 
         if self.rightlowerarmmass is not None:
-            self.unwrapped.model.body_mass[11] = self.rightlowerarmmass
+            self.unwrapped.model.body_mass[11] = self.rightlowerarmmass  # type: ignore
 
         if self.leftupperarmmass is not None:
-            self.unwrapped.model.body_mass[12] = self.leftupperarmmass
+            self.unwrapped.model.body_mass[12] = self.leftupperarmmass  # type: ignore
 
         if self.leftlowerarmmass is not None:
-            self.unwrapped.model.body_mass[13] = self.leftlowerarmmass
+            self.unwrapped.model.body_mass[13] = self.leftlowerarmmass  # type: ignore
 
 
 class ForceHumanoidStandUp(Wrapper):
@@ -257,7 +257,7 @@ class ForceHumanoidStandUp(Wrapper):
     - leftlowerarmforce_z
     """
 
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -266,7 +266,7 @@ class ForceHumanoidStandUp(Wrapper):
     }
 
     def __init__(self, **kwargs: dict[str, Any]):
-        super().__init__(env=gym.make("HumanoidStandup-v5", **kwargs))
+        super().__init__(env=gym.make("HumanoidStandup-v5", **kwargs))  # type: ignore # type: ignore
         self.set_params()
 
     def set_params(
@@ -397,121 +397,121 @@ class ForceHumanoidStandUp(Wrapper):
 
     def _change_params(self):
         if self.torsoforce_x is not None:
-            self.unwrapped.data.xfrc_applied[1][0] = self.torsoforce_x
+            self.unwrapped.data.xfrc_applied[1][0] = self.torsoforce_x  # type: ignore
 
         if self.torsoforce_y is not None:
-            self.unwrapped.data.xfrc_applied[1][1] = self.torsoforce_y
+            self.unwrapped.data.xfrc_applied[1][1] = self.torsoforce_y  # type: ignore
 
         if self.torsoforce_z is not None:
-            self.unwrapped.data.xfrc_applied[1][2] = self.torsoforce_z
+            self.unwrapped.data.xfrc_applied[1][2] = self.torsoforce_z  # type: ignore
 
         if self.lwaisforce_x is not None:
-            self.unwrapped.data.xfrc_applied[2][0] = self.lwaisforce_x
+            self.unwrapped.data.xfrc_applied[2][0] = self.lwaisforce_x  # type: ignore
 
         if self.lwaisforce_y is not None:
-            self.unwrapped.data.xfrc_applied[2][1] = self.lwaisforce_y
+            self.unwrapped.data.xfrc_applied[2][1] = self.lwaisforce_y  # type: ignore
 
         if self.lwaisforce_z is not None:
-            self.unwrapped.data.xfrc_applied[2][2] = self.lwaisforce_z
+            self.unwrapped.data.xfrc_applied[2][2] = self.lwaisforce_z  # type: ignore
 
         if self.pelvisforce_x is not None:
-            self.unwrapped.data.xfrc_applied[3][0] = self.pelvisforce_x
+            self.unwrapped.data.xfrc_applied[3][0] = self.pelvisforce_x  # type: ignore
 
         if self.pelvisforce_y is not None:
-            self.unwrapped.data.xfrc_applied[3][1] = self.pelvisforce_y
+            self.unwrapped.data.xfrc_applied[3][1] = self.pelvisforce_y  # type: ignore
 
         if self.pelvisforce_z is not None:
-            self.unwrapped.data.xfrc_applied[3][2] = self.pelvisforce_z
+            self.unwrapped.data.xfrc_applied[3][2] = self.pelvisforce_z  # type: ignore
 
         if self.rightthighforce_x is not None:
-            self.unwrapped.data.xfrc_applied[4][0] = self.rightthighforce_x
+            self.unwrapped.data.xfrc_applied[4][0] = self.rightthighforce_x  # type: ignore
 
         if self.rightthighforce_y is not None:
-            self.unwrapped.data.xfrc_applied[4][1] = self.rightthighforce_y
+            self.unwrapped.data.xfrc_applied[4][1] = self.rightthighforce_y  # type: ignore
 
         if self.rightthighforce_z is not None:
-            self.unwrapped.data.xfrc_applied[4][2] = self.rightthighforce_z
+            self.unwrapped.data.xfrc_applied[4][2] = self.rightthighforce_z  # type: ignore
 
         if self.rightshinforce_x is not None:
-            self.unwrapped.data.xfrc_applied[5][0] = self.rightshinforce_x
+            self.unwrapped.data.xfrc_applied[5][0] = self.rightshinforce_x  # type: ignore
 
         if self.rightshinforce_y is not None:
-            self.unwrapped.data.xfrc_applied[5][1] = self.rightshinforce_y
+            self.unwrapped.data.xfrc_applied[5][1] = self.rightshinforce_y  # type: ignore
 
         if self.rightshinforce_z is not None:
-            self.unwrapped.data.xfrc_applied[5][2] = self.rightshinforce_z
+            self.unwrapped.data.xfrc_applied[5][2] = self.rightshinforce_z  # type: ignore
 
         if self.rightfootforce_x is not None:
-            self.unwrapped.data.xfrc_applied[6][0] = self.rightfootforce_x
+            self.unwrapped.data.xfrc_applied[6][0] = self.rightfootforce_x  # type: ignore
 
         if self.rightfootforce_y is not None:
-            self.unwrapped.data.xfrc_applied[6][1] = self.rightfootforce_y
+            self.unwrapped.data.xfrc_applied[6][1] = self.rightfootforce_y  # type: ignore
 
         if self.rightfootforce_z is not None:
-            self.unwrapped.data.xfrc_applied[6][2] = self.rightfootforce_z
+            self.unwrapped.data.xfrc_applied[6][2] = self.rightfootforce_z  # type: ignore
 
         if self.leftthighforce_x is not None:
-            self.unwrapped.data.xfrc_applied[7][0] = self.leftthighforce_x
+            self.unwrapped.data.xfrc_applied[7][0] = self.leftthighforce_x  # type: ignore
 
         if self.leftthighforce_y is not None:
-            self.unwrapped.data.xfrc_applied[7][1] = self.leftthighforce_y
+            self.unwrapped.data.xfrc_applied[7][1] = self.leftthighforce_y  # type: ignore
 
         if self.leftthighforce_z is not None:
-            self.unwrapped.data.xfrc_applied[7][2] = self.leftthighforce_z
+            self.unwrapped.data.xfrc_applied[7][2] = self.leftthighforce_z  # type: ignore
 
         if self.leftshinforce_x is not None:
-            self.unwrapped.data.xfrc_applied[8][0] = self.leftshinforce_x
+            self.unwrapped.data.xfrc_applied[8][0] = self.leftshinforce_x  # type: ignore
 
         if self.leftshinforce_y is not None:
-            self.unwrapped.data.xfrc_applied[8][1] = self.leftshinforce_y
+            self.unwrapped.data.xfrc_applied[8][1] = self.leftshinforce_y  # type: ignore
 
         if self.leftshinforce_z is not None:
-            self.unwrapped.data.xfrc_applied[8][2] = self.leftshinforce_z
+            self.unwrapped.data.xfrc_applied[8][2] = self.leftshinforce_z  # type: ignore
 
         if self.leftfootforce_x is not None:
-            self.unwrapped.data.xfrc_applied[9][0] = self.leftfootforce_x
+            self.unwrapped.data.xfrc_applied[9][0] = self.leftfootforce_x  # type: ignore
 
         if self.leftfootforce_y is not None:
-            self.unwrapped.data.xfrc_applied[9][1] = self.leftfootforce_y
+            self.unwrapped.data.xfrc_applied[9][1] = self.leftfootforce_y  # type: ignore
 
         if self.leftfootforce_z is not None:
-            self.unwrapped.data.xfrc_applied[9][2] = self.leftfootforce_z
+            self.unwrapped.data.xfrc_applied[9][2] = self.leftfootforce_z  # type: ignore
 
         if self.rightupperarmforce_x is not None:
-            self.unwrapped.data.xfrc_applied[10][0] = self.rightupperarmforce_x
+            self.unwrapped.data.xfrc_applied[10][0] = self.rightupperarmforce_x  # type: ignore
 
         if self.rightupperarmforce_y is not None:
-            self.unwrapped.data.xfrc_applied[10][1] = self.rightupperarmforce_y
+            self.unwrapped.data.xfrc_applied[10][1] = self.rightupperarmforce_y  # type: ignore
 
         if self.rightupperarmforce_z is not None:
-            self.unwrapped.data.xfrc_applied[10][2] = self.rightupperarmforce_z
+            self.unwrapped.data.xfrc_applied[10][2] = self.rightupperarmforce_z  # type: ignore
 
         if self.rightlowerarmforce_x is not None:
-            self.unwrapped.data.xfrc_applied[11][0] = self.rightlowerarmforce_x
+            self.unwrapped.data.xfrc_applied[11][0] = self.rightlowerarmforce_x  # type: ignore
 
         if self.rightlowerarmforce_y is not None:
-            self.unwrapped.data.xfrc_applied[11][1] = self.rightlowerarmforce_y
+            self.unwrapped.data.xfrc_applied[11][1] = self.rightlowerarmforce_y  # type: ignore
 
         if self.rightlowerarmforce_z is not None:
-            self.unwrapped.data.xfrc_applied[11][2] = self.rightlowerarmforce_z
+            self.unwrapped.data.xfrc_applied[11][2] = self.rightlowerarmforce_z  # type: ignore
 
         if self.leftupperarmforce_x is not None:
-            self.unwrapped.data.xfrc_applied[12][0] = self.leftupperarmforce_x
+            self.unwrapped.data.xfrc_applied[12][0] = self.leftupperarmforce_x  # type: ignore
 
         if self.leftupperarmforce_y is not None:
-            self.unwrapped.data.xfrc_applied[12][1] = self.leftupperarmforce_y
+            self.unwrapped.data.xfrc_applied[12][1] = self.leftupperarmforce_y  # type: ignore
 
         if self.leftupperarmforce_z is not None:
-            self.unwrapped.data.xfrc_applied[12][2] = self.leftupperarmforce_z
+            self.unwrapped.data.xfrc_applied[12][2] = self.leftupperarmforce_z  # type: ignore
 
         if self.leftlowerarmforce_x is not None:
-            self.unwrapped.data.xfrc_applied[13][0] = self.leftlowerarmforce_x
+            self.unwrapped.data.xfrc_applied[13][0] = self.leftlowerarmforce_x  # type: ignore
 
         if self.leftlowerarmforce_y is not None:
-            self.unwrapped.data.xfrc_applied[13][1] = self.leftlowerarmforce_y
+            self.unwrapped.data.xfrc_applied[13][1] = self.leftlowerarmforce_y  # type: ignore
 
         if self.leftlowerarmforce_z is not None:
-            self.unwrapped.data.xfrc_applied[13][2] = self.leftlowerarmforce_z
+            self.unwrapped.data.xfrc_applied[13][2] = self.leftlowerarmforce_z  # type: ignore
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
