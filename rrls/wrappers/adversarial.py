@@ -77,7 +77,8 @@ class DynamicAdversarial(gym.Wrapper):
         obs, reward, terminated, truncated, info = self.env.step(action_agent)
 
         info.update(unnormalized_action_nature)
-        info.update({"adversarial_reward": -reward})
+        # Float cast is for typing issue because reward is SupportsFloat type
+        info.update({"adversarial_reward": -float(reward)})
         return obs, reward, terminated, truncated, info
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):

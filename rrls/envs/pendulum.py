@@ -6,6 +6,11 @@ from typing import Any
 import gymnasium as gym
 from gymnasium import Wrapper
 
+DEFAULT_PARAMS = {
+    "polemass": 10.47197551196598,
+    "cartmass": 5.018591641363306,
+}
+
 
 class InvertedPendulumParamsBound(Enum):
     ONE_DIM = {
@@ -30,7 +35,7 @@ class RobustInvertedPendulum(Wrapper):
         - cartmass
     """
 
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -44,7 +49,7 @@ class RobustInvertedPendulum(Wrapper):
         cartmass: float | None = None,
         **kwargs: dict[str, Any],
     ):
-        super().__init__(env=gym.make("InvertedPendulum-v5", **kwargs))
+        super().__init__(env=gym.make("InvertedPendulum-v5", **kwargs))  # type: ignore
         self.set_params(polemass=polemass, cartmass=cartmass)
 
     def set_params(self, polemass: float | None = None, cartmass: float | None = None):
@@ -72,9 +77,9 @@ class RobustInvertedPendulum(Wrapper):
 
     def _change_params(self):
         if self.cartmass is not None:
-            self.unwrapped.model.body_mass[1] = self.cartmass
+            self.unwrapped.model.body_mass[1] = self.cartmass  # type: ignore
         if self.polemass is not None:
-            self.unwrapped.model.body_mass[2] = self.polemass
+            self.unwrapped.model.body_mass[2] = self.polemass  # type: ignore
 
 
 class ForceInvertedPendulum(Wrapper):
@@ -85,7 +90,7 @@ class ForceInvertedPendulum(Wrapper):
         - cartforce
     """
 
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -94,7 +99,7 @@ class ForceInvertedPendulum(Wrapper):
     }
 
     def __init__(self, **kwargs: dict[str, Any]):
-        super().__init__(env=gym.make("InvertedPendulum-v5", **kwargs))
+        super().__init__(env=gym.make("InvertedPendulum-v5", **kwargs))  # type: ignore
         self.set_params()
 
     def set_params(
@@ -126,17 +131,17 @@ class ForceInvertedPendulum(Wrapper):
 
     def _change_params(self):
         if self.cartforce_x is not None:
-            self.unwrapped.data.xfrc_applied[1, 0] = self.cartforce_x
+            self.unwrapped.data.xfrc_applied[1, 0] = self.cartforce_x  # type: ignore
         if self.cartforce_y is not None:
-            self.unwrapped.data.xfrc_applied[1, 1] = self.cartforce_y
+            self.unwrapped.data.xfrc_applied[1, 1] = self.cartforce_y  # type: ignore
         if self.cartforce_z is not None:
-            self.unwrapped.data.xfrc_applied[1, 2] = self.cartforce_z
+            self.unwrapped.data.xfrc_applied[1, 2] = self.cartforce_z  # type: ignore
         if self.poleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[2, 0] = self.poleforce_x
+            self.unwrapped.data.xfrc_applied[2, 0] = self.poleforce_x  # type: ignore
         if self.poleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[2, 1] = self.poleforce_y
+            self.unwrapped.data.xfrc_applied[2, 1] = self.poleforce_y  # type: ignore
         if self.poleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[2, 2] = self.poleforce_z
+            self.unwrapped.data.xfrc_applied[2, 2] = self.poleforce_z  # type: ignore
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:

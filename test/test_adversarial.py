@@ -37,9 +37,12 @@ def test_adversarial_params_change(env):
         }
         action_formated = _unnormalize_action_nature(action_formated, params_bound)  # type: ignore
 
-        assert {
-            k: v for k, v in env.get_params().items() if v is not None
-        } == action_formated
+        env_params = env.get_params()
+        common_keys = env_params.keys() & action_formated.keys()
+
+        assert {k: env_params[k] for k in common_keys if env_params[k] is not None} == {
+            k: action_formated[k] for k in common_keys
+        }
 
 
 def _unnormalize_action_nature(
@@ -48,7 +51,6 @@ def _unnormalize_action_nature(
     action_nature_unnormalized = {}
     for k, v in action_nature.items():
         action_nature_unnormalized[k] = (
-            params_bound[k][0]
-            + ((v - (-1)) * (params_bound[k][1] - params_bound[k][0])) / 2  # type: ignore
+            params_bound[k][0] + ((v - (-1)) * (params_bound[k][1] - params_bound[k][0])) / 2  # type: ignore
         )
     return action_nature_unnormalized

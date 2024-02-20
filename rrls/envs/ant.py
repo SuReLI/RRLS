@@ -6,6 +6,22 @@ from typing import Any
 import gymnasium as gym
 from gymnasium import Wrapper
 
+DEFAULT_PARAMS = {
+    "torsomass": 0.32724923474893675,
+    "frontleftlegmass": 0.03915775372846671,
+    "frontleftlegauxmass": 0.03915775372846671,
+    "frontleftleganklemass": 0.06759220453268026,
+    "frontrightlegmass": 0.03915775372846671,
+    "frontrightlegauxmass": 0.03915775372846671,
+    "frontrightleganklemass": 0.06759220453268026,
+    "backleftlegmass": 0.03915775372846671,
+    "backleftlegauxmass": 0.03915775372846671,
+    "backleftleganklemass": 0.06759220453268026,
+    "backrightlegmass": 0.03915775372846671,
+    "backrightlegauxmass": 0.03915775372846671,
+    "backrightleganklemass": 0.06759220453268026,
+}
+
 
 class AntParamsBound(Enum):
     ONE_DIM = {
@@ -52,7 +68,7 @@ class RobustAnt(Wrapper):
 
     # HACK: This is a hack to avoid the following error:
     # gymnasium.error.InvalidMetadata: Expect the environment metadata to be dict, actual type: <class 'module'>
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -77,7 +93,7 @@ class RobustAnt(Wrapper):
         backrightleganklemass: float | None = None,
         **kwargs: dict[str, Any],
     ):
-        super().__init__(env=gym.make("Ant-v5", **kwargs))
+        super().__init__(env=gym.make("Ant-v5", **kwargs))  # type: ignore
         self.set_params(
             torsomass=torsomass,
             frontleftlegmass=frontleftlegmass,
@@ -111,19 +127,87 @@ class RobustAnt(Wrapper):
         backrightlegauxmass: float | None = None,
         backrightleganklemass: float | None = None,
     ):
-        self.torsomass = torsomass
-        self.frontleftlegmass = frontleftlegmass
-        self.frontleftlegauxmass = frontleftlegauxmass
-        self.frontleftleganklemass = frontleftleganklemass
-        self.frontrightlegmass = frontrightlegmass
-        self.frontrightlegauxmass = frontrightlegauxmass
-        self.frontrightleganklemass = frontrightleganklemass
-        self.backleftlegmass = backleftlegmass
-        self.backleftlegauxmass = backleftlegauxmass
-        self.backleftleganklemass = backleftleganklemass
-        self.backrightlegmass = backrightlegmass
-        self.backrightlegauxmass = backrightlegauxmass
-        self.backrightleganklemass = backrightleganklemass
+        self.torsomass = (
+            torsomass
+            if torsomass is not None
+            else getattr(self, "torsomass", DEFAULT_PARAMS["torsomass"])
+        )
+        self.frontleftlegmass = (
+            frontleftlegmass
+            if frontleftlegmass is not None
+            else getattr(self, "frontleftlegmass", DEFAULT_PARAMS["frontleftlegmass"])
+        )
+        self.frontleftlegauxmass = (
+            frontleftlegauxmass
+            if frontleftlegauxmass is not None
+            else getattr(
+                self, "frontleftlegauxmass", DEFAULT_PARAMS["frontleftlegauxmass"]
+            )
+        )
+        self.frontleftleganklemass = (
+            frontleftleganklemass
+            if frontleftleganklemass is not None
+            else getattr(
+                self, "frontleftleganklemass", DEFAULT_PARAMS["frontleftleganklemass"]
+            )
+        )
+        self.frontrightlegmass = (
+            frontrightlegmass
+            if frontrightlegmass is not None
+            else getattr(self, "frontrightlegmass", DEFAULT_PARAMS["frontrightlegmass"])
+        )
+        self.frontrightlegauxmass = (
+            frontrightlegauxmass
+            if frontrightlegauxmass is not None
+            else getattr(
+                self, "frontrightlegauxmass", DEFAULT_PARAMS["frontrightlegauxmass"]
+            )
+        )
+        self.frontrightleganklemass = (
+            frontrightleganklemass
+            if frontrightleganklemass is not None
+            else getattr(
+                self, "frontrightleganklemass", DEFAULT_PARAMS["frontrightleganklemass"]
+            )
+        )
+        self.backleftlegmass = (
+            backleftlegmass
+            if backleftlegmass is not None
+            else getattr(self, "backleftlegmass", DEFAULT_PARAMS["backleftlegmass"])
+        )
+        self.backleftlegauxmass = (
+            backleftlegauxmass
+            if backleftlegauxmass is not None
+            else getattr(
+                self, "backleftlegauxmass", DEFAULT_PARAMS["backleftlegauxmass"]
+            )
+        )
+        self.backleftleganklemass = (
+            backleftleganklemass
+            if backleftleganklemass is not None
+            else getattr(
+                self, "backleftleganklemass", DEFAULT_PARAMS["backleftleganklemass"]
+            )
+        )
+        self.backrightlegmass = (
+            backrightlegmass
+            if backrightlegmass is not None
+            else getattr(self, "backrightlegmass", DEFAULT_PARAMS["backrightlegmass"])
+        )
+        self.backrightlegauxmass = (
+            backrightlegauxmass
+            if backrightlegauxmass is not None
+            else getattr(
+                self, "backrightlegauxmass", DEFAULT_PARAMS["backrightlegauxmass"]
+            )
+        )
+        self.backrightleganklemass = (
+            backrightleganklemass
+            if backrightleganklemass is not None
+            else getattr(
+                self, "backrightleganklemass", DEFAULT_PARAMS["backrightleganklemass"]
+            )
+        )
         self._change_params()
 
     def get_params(self):
@@ -157,43 +241,43 @@ class RobustAnt(Wrapper):
 
     def _change_params(self):
         if self.torsomass is not None:
-            self.unwrapped.model.body_mass[1] = self.torsomass
+            self.unwrapped.model.body_mass[1] = self.torsomass  # type: ignore
 
         if self.frontleftlegmass is not None:
-            self.unwrapped.model.body_mass[2] = self.frontleftlegmass
+            self.unwrapped.model.body_mass[2] = self.frontleftlegmass  # type: ignore
 
         if self.frontleftlegauxmass is not None:
-            self.unwrapped.model.body_mass[3] = self.frontleftlegauxmass
+            self.unwrapped.model.body_mass[3] = self.frontleftlegauxmass  # type: ignore
 
         if self.frontleftleganklemass is not None:
-            self.unwrapped.model.body_mass[4] = self.frontleftleganklemass
+            self.unwrapped.model.body_mass[4] = self.frontleftleganklemass  # type: ignore
 
         if self.frontrightlegmass is not None:
-            self.unwrapped.model.body_mass[5] = self.frontrightlegmass
+            self.unwrapped.model.body_mass[5] = self.frontrightlegmass  # type: ignore
 
         if self.frontrightlegauxmass is not None:
-            self.unwrapped.model.body_mass[6] = self.frontrightlegauxmass
+            self.unwrapped.model.body_mass[6] = self.frontrightlegauxmass  # type: ignore
 
         if self.frontrightleganklemass is not None:
-            self.unwrapped.model.body_mass[7] = self.frontrightleganklemass
+            self.unwrapped.model.body_mass[7] = self.frontrightleganklemass  # type: ignore
 
         if self.backleftlegmass is not None:
-            self.unwrapped.model.body_mass[8] = self.backleftlegmass
+            self.unwrapped.model.body_mass[8] = self.backleftlegmass  # type: ignore
 
         if self.backleftlegauxmass is not None:
-            self.unwrapped.model.body_mass[9] = self.backleftlegauxmass
+            self.unwrapped.model.body_mass[9] = self.backleftlegauxmass  # type: ignore
 
         if self.backleftleganklemass is not None:
-            self.unwrapped.model.body_mass[10] = self.backleftleganklemass
+            self.unwrapped.model.body_mass[10] = self.backleftleganklemass  # type: ignore
 
         if self.backrightlegmass is not None:
-            self.unwrapped.model.body_mass[11] = self.backrightlegmass
+            self.unwrapped.model.body_mass[11] = self.backrightlegmass  # type: ignore
 
         if self.backrightlegauxmass is not None:
-            self.unwrapped.model.body_mass[12] = self.backrightlegauxmass
+            self.unwrapped.model.body_mass[12] = self.backrightlegauxmass  # type: ignore
 
         if self.backrightleganklemass is not None:
-            self.unwrapped.model.body_mass[13] = self.backrightleganklemass
+            self.unwrapped.model.body_mass[13] = self.backrightleganklemass  # type: ignore
 
 
 class ForceAnt(Wrapper):
@@ -243,7 +327,7 @@ class ForceAnt(Wrapper):
 
     # HACK: This is a hack to avoid the following error:
     # gymnasium.error.InvalidMetadata: Expect the environment metadata to be dict, actual type: <class 'module'>
-    metadata = {
+    metadata = {  # type: ignore
         "render_modes": [
             "human",
             "rgb_array",
@@ -252,7 +336,7 @@ class ForceAnt(Wrapper):
     }
 
     def __init__(self, **kwargs: dict[str, Any]):
-        super().__init__(env=gym.make("Ant-v5", **kwargs))
+        super().__init__(env=gym.make("Ant-v5", **kwargs))  # type: ignore
         self.set_params()
 
     def set_params(
@@ -383,121 +467,121 @@ class ForceAnt(Wrapper):
 
     def _change_params(self):
         if self.torsoforce_x is not None:
-            self.unwrapped.data.xfrc_applied[1, 0] = self.torsoforce_x
+            self.unwrapped.data.xfrc_applied[1, 0] = self.torsoforce_x  # type: ignore
 
         if self.torsoforce_y is not None:
-            self.unwrapped.data.xfrc_applied[1, 1] = self.torsoforce_y
+            self.unwrapped.data.xfrc_applied[1, 1] = self.torsoforce_y  # type: ignore
 
         if self.torsoforce_z is not None:
-            self.unwrapped.data.xfrc_applied[1, 2] = self.torsoforce_z
+            self.unwrapped.data.xfrc_applied[1, 2] = self.torsoforce_z  # type: ignore
 
         if self.frontleftlegforce_x is not None:
-            self.unwrapped.data.xfrc_applied[2, 0] = self.frontleftlegforce_x
+            self.unwrapped.data.xfrc_applied[2, 0] = self.frontleftlegforce_x  # type: ignore
 
         if self.frontleftlegforce_y is not None:
-            self.unwrapped.data.xfrc_applied[2, 1] = self.frontleftlegforce_y
+            self.unwrapped.data.xfrc_applied[2, 1] = self.frontleftlegforce_y  # type: ignore
 
         if self.frontleftlegforce_z is not None:
-            self.unwrapped.data.xfrc_applied[2, 2] = self.frontleftlegforce_z
+            self.unwrapped.data.xfrc_applied[2, 2] = self.frontleftlegforce_z  # type: ignore
 
         if self.frontleftlegauxforce_x is not None:
-            self.unwrapped.data.xfrc_applied[3, 0] = self.frontleftlegauxforce_x
+            self.unwrapped.data.xfrc_applied[3, 0] = self.frontleftlegauxforce_x  # type: ignore
 
         if self.frontleftlegauxforce_y is not None:
-            self.unwrapped.data.xfrc_applied[3, 1] = self.frontleftlegauxforce_y
+            self.unwrapped.data.xfrc_applied[3, 1] = self.frontleftlegauxforce_y  # type: ignore
 
         if self.frontleftlegauxforce_z is not None:
-            self.unwrapped.data.xfrc_applied[3, 2] = self.frontleftlegauxforce_z
+            self.unwrapped.data.xfrc_applied[3, 2] = self.frontleftlegauxforce_z  # type: ignore
 
         if self.frontleftlegankleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[4, 0] = self.frontleftlegankleforce_x
+            self.unwrapped.data.xfrc_applied[4, 0] = self.frontleftlegankleforce_x  # type: ignore
 
         if self.frontleftlegankleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[4, 1] = self.frontleftlegankleforce_y
+            self.unwrapped.data.xfrc_applied[4, 1] = self.frontleftlegankleforce_y  # type: ignore
 
         if self.frontleftlegankleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[4, 2] = self.frontleftlegankleforce_z
+            self.unwrapped.data.xfrc_applied[4, 2] = self.frontleftlegankleforce_z  # type: ignore
 
         if self.frontrightlegforce_x is not None:
-            self.unwrapped.data.xfrc_applied[5, 0] = self.frontrightlegforce_x
+            self.unwrapped.data.xfrc_applied[5, 0] = self.frontrightlegforce_x  # type: ignore
 
         if self.frontrightlegforce_y is not None:
-            self.unwrapped.data.xfrc_applied[5, 1] = self.frontrightlegforce_y
+            self.unwrapped.data.xfrc_applied[5, 1] = self.frontrightlegforce_y  # type: ignore
 
         if self.frontrightlegforce_z is not None:
-            self.unwrapped.data.xfrc_applied[5, 2] = self.frontrightlegforce_z
+            self.unwrapped.data.xfrc_applied[5, 2] = self.frontrightlegforce_z  # type: ignore
 
         if self.frontrightlegauxforce_x is not None:
-            self.unwrapped.data.xfrc_applied[6, 0] = self.frontrightlegauxforce_x
+            self.unwrapped.data.xfrc_applied[6, 0] = self.frontrightlegauxforce_x  # type: ignore
 
         if self.frontrightlegauxforce_y is not None:
-            self.unwrapped.data.xfrc_applied[6, 1] = self.frontrightlegauxforce_y
+            self.unwrapped.data.xfrc_applied[6, 1] = self.frontrightlegauxforce_y  # type: ignore
 
         if self.frontrightlegauxforce_z is not None:
-            self.unwrapped.data.xfrc_applied[6, 2] = self.frontrightlegauxforce_z
+            self.unwrapped.data.xfrc_applied[6, 2] = self.frontrightlegauxforce_z  # type: ignore
 
         if self.frontrightlegankleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[7, 0] = self.frontrightlegankleforce_x
+            self.unwrapped.data.xfrc_applied[7, 0] = self.frontrightlegankleforce_x  # type: ignore
 
         if self.frontrightlegankleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[7, 1] = self.frontrightlegankleforce_y
+            self.unwrapped.data.xfrc_applied[7, 1] = self.frontrightlegankleforce_y  # type: ignore
 
         if self.frontrightlegankleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[7, 2] = self.frontrightlegankleforce_z
+            self.unwrapped.data.xfrc_applied[7, 2] = self.frontrightlegankleforce_z  # type: ignore
 
         if self.backleftlegforce_x is not None:
-            self.unwrapped.data.xfrc_applied[8, 0] = self.backleftlegforce_x
+            self.unwrapped.data.xfrc_applied[8, 0] = self.backleftlegforce_x  # type: ignore
 
         if self.backleftlegforce_y is not None:
-            self.unwrapped.data.xfrc_applied[8, 1] = self.backleftlegforce_y
+            self.unwrapped.data.xfrc_applied[8, 1] = self.backleftlegforce_y  # type: ignore
 
         if self.backleftlegforce_z is not None:
-            self.unwrapped.data.xfrc_applied[8, 2] = self.backleftlegforce_z
+            self.unwrapped.data.xfrc_applied[8, 2] = self.backleftlegforce_z  # type: ignore
 
         if self.backleftlegauxforce_x is not None:
-            self.unwrapped.data.xfrc_applied[9, 0] = self.backleftlegauxforce_x
+            self.unwrapped.data.xfrc_applied[9, 0] = self.backleftlegauxforce_x  # type: ignore
 
         if self.backleftlegauxforce_y is not None:
-            self.unwrapped.data.xfrc_applied[9, 1] = self.backleftlegauxforce_y
+            self.unwrapped.data.xfrc_applied[9, 1] = self.backleftlegauxforce_y  # type: ignore
 
         if self.backleftlegauxforce_z is not None:
-            self.unwrapped.data.xfrc_applied[9, 2] = self.backleftlegauxforce_z
+            self.unwrapped.data.xfrc_applied[9, 2] = self.backleftlegauxforce_z  # type: ignore
 
         if self.backleftlegankleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[10, 0] = self.backleftlegankleforce_x
+            self.unwrapped.data.xfrc_applied[10, 0] = self.backleftlegankleforce_x  # type: ignore
 
         if self.backleftlegankleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[10, 1] = self.backleftlegankleforce_y
+            self.unwrapped.data.xfrc_applied[10, 1] = self.backleftlegankleforce_y  # type: ignore
 
         if self.backleftlegankleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[10, 2] = self.backleftlegankleforce_z
+            self.unwrapped.data.xfrc_applied[10, 2] = self.backleftlegankleforce_z  # type: ignore
 
         if self.backrightlegforce_x is not None:
-            self.unwrapped.data.xfrc_applied[11, 0] = self.backrightlegforce_x
+            self.unwrapped.data.xfrc_applied[11, 0] = self.backrightlegforce_x  # type: ignore
 
         if self.backrightlegforce_y is not None:
-            self.unwrapped.data.xfrc_applied[11, 1] = self.backrightlegforce_y
+            self.unwrapped.data.xfrc_applied[11, 1] = self.backrightlegforce_y  # type: ignore
 
         if self.backrightlegforce_z is not None:
-            self.unwrapped.data.xfrc_applied[11, 2] = self.backrightlegforce_z
+            self.unwrapped.data.xfrc_applied[11, 2] = self.backrightlegforce_z  # type: ignore
 
         if self.backrightlegauxforce_x is not None:
-            self.unwrapped.data.xfrc_applied[12, 0] = self.backrightlegauxforce_x
+            self.unwrapped.data.xfrc_applied[12, 0] = self.backrightlegauxforce_x  # type: ignore
 
         if self.backrightlegauxforce_y is not None:
-            self.unwrapped.data.xfrc_applied[12, 1] = self.backrightlegauxforce_y
+            self.unwrapped.data.xfrc_applied[12, 1] = self.backrightlegauxforce_y  # type: ignore
 
         if self.backrightlegauxforce_z is not None:
-            self.unwrapped.data.xfrc_applied[12, 2] = self.backrightlegauxforce_z
+            self.unwrapped.data.xfrc_applied[12, 2] = self.backrightlegauxforce_z  # type: ignore
 
         if self.backrightlegankleforce_x is not None:
-            self.unwrapped.data.xfrc_applied[13, 0] = self.backrightlegankleforce_x
+            self.unwrapped.data.xfrc_applied[13, 0] = self.backrightlegankleforce_x  # type: ignore
 
         if self.backrightlegankleforce_y is not None:
-            self.unwrapped.data.xfrc_applied[13, 1] = self.backrightlegankleforce_y
+            self.unwrapped.data.xfrc_applied[13, 1] = self.backrightlegankleforce_y  # type: ignore
 
         if self.backrightlegankleforce_z is not None:
-            self.unwrapped.data.xfrc_applied[13, 2] = self.backrightlegankleforce_z
+            self.unwrapped.data.xfrc_applied[13, 2] = self.backrightlegankleforce_z  # type: ignore
 
     def reset(self, *, seed: int | None = None, options: dict | None = None):
         if options is not None:
