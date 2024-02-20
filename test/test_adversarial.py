@@ -51,7 +51,6 @@ def _unnormalize_action_nature(
     action_nature_unnormalized = {}
     for k, v in action_nature.items():
         action_nature_unnormalized[k] = (
-            params_bound[k][0]
-            + ((v - (-1)) * (params_bound[k][1] - params_bound[k][0])) / 2  # type: ignore
+            params_bound[k][0] + ((v - (-1)) * (params_bound[k][1] - params_bound[k][0])) / 2  # type: ignore
         )
     return action_nature_unnormalized
