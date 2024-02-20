@@ -298,7 +298,7 @@ class ForceWalker2d(Wrapper):
             self.unwrapped.data.xfrc_applied[3, 2] = self.legforce_z  # type: ignore
 
         if self.footforce_x is not None:
-            self.unwrapped.data.xfrc_applied[4, 0] = self.footforce_x  # type: ignore # type: ignore
+            self.unwrapped.data.xfrc_applied[4, 0] = self.footforce_x  # type: ignore
 
         if self.footforce_y is not None:
             self.unwrapped.data.xfrc_applied[4, 1] = self.footforce_y  # type: ignore
