@@ -114,7 +114,9 @@ class RobustWalker2d(Wrapper):
             else getattr(self, "thighmass", DEFAULT_PARAMS["thighmass"])
         )
         self.legmass = (
-            legmass if legmass is not None else getattr(self, "legmass", DEFAULT_PARAMS["legmass"])
+            legmass
+            if legmass is not None
+            else getattr(self, "legmass", DEFAULT_PARAMS["legmass"])
         )
         self.footmass = (
             footmass

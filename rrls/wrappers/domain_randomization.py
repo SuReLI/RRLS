@@ -30,10 +30,9 @@ class DomainRandomization(gym.Wrapper):
         self,
         env: ModifiedParamsEnv,
         params_bound: dict[str, Annotated[tuple[float], 2]],
-        randomize_fn: Callable[
-            [dict[str, Annotated[tuple[float], 2]]], dict[str, float]
-        ]
-        | None = None,
+        randomize_fn: (
+            Callable[[dict[str, Annotated[tuple[float], 2]]], dict[str, float]] | None
+        ) = None,
     ):
         super().__init__(env)
         self.env = env
