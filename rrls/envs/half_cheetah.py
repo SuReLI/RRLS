@@ -9,7 +9,8 @@ from gymnasium import Wrapper
 # from gymnasium.envs.mujoco.half_cheetah_v4 import HalfCheetahEnv
 
 DEFAULT_PARAMS = {
-    "worldfriction": [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4],
+    # "worldfriction": [0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4],
+    "worldfriction": 0.4,
     "torsomass": 6.25020920502092,
     "backthighmass": 1.5435146443514645,
     "backshinmass": 1.5874476987447697,
@@ -103,7 +104,11 @@ class RobustHalfCheetah(Wrapper):
         forwardshinmass: float | None = None,
         forwardfootmass: float | None = None,
     ):
-        self.worldfriction = worldfriction
+        self.worldfriction = (
+            worldfriction
+            if worldfriction is not None
+            else getattr(self, "worldfriction", DEFAULT_PARAMS["worldfriction"])
+        )
         self.torsomass = (
             torsomass
             if torsomass is not None

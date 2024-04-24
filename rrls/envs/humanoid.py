@@ -127,19 +127,71 @@ class RobustHumanoidStandUp(Wrapper):
         leftupperarmmass: float | None = None,
         leftlowerarmmass: float | None = None,
     ):
-        self.torsomass = torsomass
-        self.lwaistmass = lwaistmass
-        self.pelvismass = pelvismass
-        self.rightthighmass = rightthighmass
-        self.rightshinmass = rightshinmass
-        self.rightfootmass = rightfootmass
-        self.leftthighmass = leftthighmass
-        self.leftshinmass = leftshinmass
-        self.leftfootmass = leftfootmass
-        self.rightupperarmmass = rightupperarmmass
-        self.rightlowerarmmass = rightlowerarmmass
-        self.leftupperarmmass = leftupperarmmass
-        self.leftlowerarmmass = leftlowerarmmass
+        self.torsomass = (
+            torsomass
+            if torsomass is not None
+            else getattr(self, "torsomass", DEFAULT_PARAMS["torsomass"])
+        )
+        self.lwaistmass = (
+            lwaistmass
+            if lwaistmass is not None
+            else getattr(self, "lwaistmass", DEFAULT_PARAMS["lwaistmass"])
+        )
+        self.pelvismass = (
+            pelvismass
+            if pelvismass is not None
+            else getattr(self, "pelvismass", DEFAULT_PARAMS["pelvismass"])
+        )
+        self.rightthighmass = (
+            rightthighmass
+            if rightthighmass is not None
+            else getattr(self, "rightthighmass", DEFAULT_PARAMS["rightthighmass"])
+        )
+        self.rightshinmass = (
+            rightshinmass
+            if rightshinmass is not None
+            else getattr(self, "rightshinmass", DEFAULT_PARAMS["rightshinmass"])
+        )
+        self.rightfootmass = (
+            rightfootmass
+            if rightfootmass is not None
+            else getattr(self, "rightfootmass", DEFAULT_PARAMS["rightfootmass"])
+        )
+        self.leftthighmass = (
+            leftthighmass
+            if leftthighmass is not None
+            else getattr(self, "leftthighmass", DEFAULT_PARAMS["leftthighmass"])
+        )
+        self.leftshinmass = (
+            leftshinmass
+            if leftshinmass is not None
+            else getattr(self, "leftshinmass", DEFAULT_PARAMS["leftshinmass"])
+        )
+        self.leftfootmass = (
+            leftfootmass
+            if leftfootmass is not None
+            else getattr(self, "leftfootmass", DEFAULT_PARAMS["leftfootmass"])
+        )
+        self.rightupperarmmass = (
+            rightupperarmmass
+            if rightupperarmmass is not None
+            else getattr(self, "rightupperarmmass", DEFAULT_PARAMS["rightupperarmmass"])
+        )
+        self.rightlowerarmmass = (
+            rightlowerarmmass
+            if rightlowerarmmass is not None
+            else getattr(self, "rightlowerarmmass", DEFAULT_PARAMS["rightlowerarmmass"])
+        )
+        self.leftupperarmmass = (
+            leftupperarmmass
+            if leftupperarmmass is not None
+            else getattr(self, "leftupperarmmass", DEFAULT_PARAMS["leftupperarmmass"])
+        )
+        self.leftlowerarmmass = (
+            leftlowerarmmass
+            if leftlowerarmmass is not None
+            else getattr(self, "leftlowerarmmass", DEFAULT_PARAMS["leftlowerarmmass"])
+        )
         self._change_params()
 
     def get_params(self):

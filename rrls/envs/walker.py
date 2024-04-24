@@ -98,14 +98,44 @@ class RobustWalker2d(Wrapper):
         leftlegmass: float | None = None,
         leftfootmass: float | None = None,
     ):
-        self.worldfriction = worldfriction
-        self.torsomass = torsomass
-        self.thighmass = thighmass
-        self.legmass = legmass
-        self.footmass = footmass
-        self.leftthighmass = leftthighmass
-        self.leftlegmass = leftlegmass
-        self.leftfootmass = leftfootmass
+        self.worldfriction = (
+            worldfriction
+            if worldfriction is not None
+            else getattr(self, "worldfriction", DEFAULT_PARAMS["worldfriction"])
+        )
+        self.torsomass = (
+            torsomass
+            if torsomass is not None
+            else getattr(self, "torsomass", DEFAULT_PARAMS["torsomass"])
+        )
+        self.thighmass = (
+            thighmass
+            if thighmass is not None
+            else getattr(self, "thighmass", DEFAULT_PARAMS["thighmass"])
+        )
+        self.legmass = (
+            legmass if legmass is not None else getattr(self, "legmass", DEFAULT_PARAMS["legmass"])
+        )
+        self.footmass = (
+            footmass
+            if footmass is not None
+            else getattr(self, "footmass", DEFAULT_PARAMS["footmass"])
+        )
+        self.leftthighmass = (
+            leftthighmass
+            if leftthighmass is not None
+            else getattr(self, "leftthighmass", DEFAULT_PARAMS["leftthighmass"])
+        )
+        self.leftlegmass = (
+            leftlegmass
+            if leftlegmass is not None
+            else getattr(self, "leftlegmass", DEFAULT_PARAMS["leftlegmass"])
+        )
+        self.leftfootmass = (
+            leftfootmass
+            if leftfootmass is not None
+            else getattr(self, "leftfootmass", DEFAULT_PARAMS["leftfootmass"])
+        )
         self._change_params()
 
     def get_params(self):

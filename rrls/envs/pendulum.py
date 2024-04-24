@@ -53,8 +53,16 @@ class RobustInvertedPendulum(Wrapper):
         self.set_params(polemass=polemass, cartmass=cartmass)
 
     def set_params(self, polemass: float | None = None, cartmass: float | None = None):
-        self.polemass = polemass
-        self.cartmass = cartmass
+        self.polemass = (
+            polemass
+            if polemass is not None
+            else getattr(self, "polemass", DEFAULT_PARAMS["polemass"])
+        )
+        self.cartmass = (
+            cartmass
+            if cartmass is not None
+            else getattr(self, "cartmass", DEFAULT_PARAMS["cartmass"])
+        )
         self._change_params()
 
     def get_params(self):
