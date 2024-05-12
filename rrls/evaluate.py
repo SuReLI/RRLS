@@ -14,6 +14,7 @@ from .envs import (
     InvertedPendulumParamsBound,
     RobustAnt,
     RobustHalfCheetah,
+    RobustHopper,
     RobustHumanoidStandUp,
     RobustInvertedPendulum,
     RobustWalker2d,
@@ -139,19 +140,19 @@ EVALUATION_ROBUST_INVERTED_PENDULUM_2D = generate_evaluation_set(
 )
 
 EVALUATION_ROBUST_HOPPER_1D = generate_evaluation_set(
-    modified_env=RobustWalker2d,  # type: ignore
+    modified_env=RobustHopper,  # type: ignore
     param_bounds=HopperParamsBound.ONE_DIM.value,
     nb_mesh_dim=10,
 )
 
 EVALUATION_ROBUST_HOPPER_2D = generate_evaluation_set(
-    modified_env=RobustWalker2d,  # type: ignore
+    modified_env=RobustHopper,  # type: ignore
     param_bounds=HopperParamsBound.TWO_DIM.value,
     nb_mesh_dim=10,
 )
 
 EVALUATION_ROBUST_HOPPER_3D = generate_evaluation_set(
-    modified_env=RobustWalker2d,  # type: ignore
+    modified_env=RobustHopper,  # type: ignore
     param_bounds=HopperParamsBound.THREE_DIM.value,
     nb_mesh_dim=10,
 )
