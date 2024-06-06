@@ -159,6 +159,7 @@ eval_env_set = generate_evaluation_set(
 - [Adil Zouitine](https://github.com/AdilZouitine) - IRT Saint-Exupery, ISAE Supaero, & Sureli Team
 - [David Bertoin](https://github.com/DavidBert) - IRT Saint-Exupery, INSA Toulouse, ISAE Supaero, & Sureli Team
 - [Emmanuel Rachelson](https://github.com/erachelson) - ISAE Supaero & Sureli Team
+- [Pierre Clavier](https://github.com/pierreclavier) -  Ecole polytechnique and Inria Paris
 
 
 ## 🙏 Acknowledgments
