@@ -170,6 +170,3 @@ This project is part of the ENVIA initiative, aiming to develop next-gen reinfor
 - **Isae Supaero**
 - **IRT Saint Exupéry**
 - **Thales**
-- **Flying whales**
-
-<img src="./media/project_logo.png" alt="Project Logo" />
